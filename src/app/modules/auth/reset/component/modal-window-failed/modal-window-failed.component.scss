@@ -1,0 +1,16 @@
+.dialog-failed-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	h1 {
+		font-family: Century Gothic, sans-serif;
+	}
+	img {
+		width: 20ch;
+		height: 20ch;
+	}
+}
+button {
+	font-family: Century Gothic, sans-serif;
+}

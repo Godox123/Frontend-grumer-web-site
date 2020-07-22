@@ -1,0 +1,11 @@
+.admin-container {
+	display: flex;
+	justify-content: space-between;
+	height: 100%;
+	.left_Bar {
+		width: 50%;
+	}
+	.right_Bar {
+		width: 100%;
+	}
+}

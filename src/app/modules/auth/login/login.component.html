@@ -1,0 +1,75 @@
+<div class="login-container">
+  <a class="return-home" routerLink="/">Вернуться на главную... --></a>
+  <div class="form-container">
+    <span *ngIf="errMsg | async" class="error-message"
+      ><p>{{ errMsg | async }}</p></span
+    >
+    <form
+      class="class-control"
+      novalidate
+      (ngSubmit)="login()"
+      [formGroup]="loginForm"
+    >
+      <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Введети ваш email</mat-label>
+          <input
+            autocomplete="off"
+            class="example-right-align"
+            formControlName="email"
+            matInput
+          />
+          <mat-error
+            *ngIf="
+              loginForm.controls['email'].invalid &&
+              loginForm.controls['email'].touched
+            "
+            >Не верно указан Email
+          </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Введите ваш пароль</mat-label>
+          <input
+            autocomplete="off"
+            formControlName="password"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+          />
+
+          <mat-icon
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+            >{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon
+          >
+          <mat-error
+            *ngIf="
+              loginForm.controls['password'].invalid &&
+              loginForm.controls['password'].touched
+            "
+            >Слишком короткий пароль
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="login">
+        <button
+          class="signIn"
+          mat-stroked-button
+          [disabled]="loginForm.invalid"
+          type="submit"
+        >
+          Войти
+        </button>
+
+        <div class="forgot-sign-up">
+          <a class="forgot" routerLink="/forgot"><p>Забыли пароль?</p></a>
+          <a mat-button class="sign-up" (click)="openDialog()">
+            Регистрация
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

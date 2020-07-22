@@ -1,0 +1,39 @@
+<div class="forgot-container">
+  <span class="back-auth">
+    <button mat-mini-fab aria-label routerLink="/auth">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </span>
+  <div class="forgot-control">
+    <span class="back-auth-mobile">
+      <button mat-mini-fab aria-label routerLink="/auth">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </span>
+    <form novalidate (ngSubmit)="forgot()" [formGroup]="forgotForm">
+      <span *ngIf="errMsg | async" class="error-message"
+        ><p>{{ errMsg | async }}</p></span
+      >
+      <span *ngIf="successMessage | async" class="success-message"
+        ><p>{{ successMessage | async }}</p></span
+      >
+      <mat-form-field appearance="fill">
+        <input
+          formControlName="email"
+          matInput
+          placeholder="Введите ваш Email"
+        />
+        <mat-error *ngIf="forgotForm.get('email').hasError('required')">
+          Поле не может быть пустым.
+        </mat-error>
+        <mat-error *ngIf="forgotForm.controls['email'].touched"
+          >Не валидный email.
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-fab [disabled]="forgotForm.invalid" type="submit">
+        Запросить
+      </button>
+    </form>
+  </div>
+</div>

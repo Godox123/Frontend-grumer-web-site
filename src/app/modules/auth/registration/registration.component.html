@@ -1,0 +1,102 @@
+<div mat-dialog-content class="registration-container">
+  <form
+    class="form"
+    novalidate
+    (ngSubmit)="SignUp()"
+    [formGroup]="RegistrationForm"
+  >
+    <h1 mat-dialog-title>Регистрация</h1>
+    <mat-form-field appearance="fill">
+      <input formControlName="email" matInput placeholder="Введите ваш Email" />
+      <mat-icon matSuffix>attach_email</mat-icon>
+      <mat-error *ngIf="RegistrationForm.get('email').hasError('required')">
+        Поле не может быть пустым.
+      </mat-error>
+      <mat-error *ngIf="RegistrationForm.controls['email'].touched"
+        >Не валидный email.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <input
+        formControlName="password"
+        matInput
+        placeholder="Введите ваш пароль"
+        [type]="hidePassword ? 'password' : 'text'"
+      />
+      <mat-icon
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hidePassword"
+        >{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon
+      >
+      <mat-error *ngIf="RegistrationForm.get('password').hasError('required')">
+        Поле не может быть пустым
+      </mat-error>
+      <mat-error *ngIf="RegistrationForm.get('password').hasError('minlength')">
+        Короткий пароль (Минимум 6 символов)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <input
+        [errorStateMatcher]="passwordsMatcher"
+        formControlName="passwordAgain"
+        matInput
+        placeholder="Повторите новый пароль"
+        [type]="hideConfirmPassword ? 'password' : 'text'"
+      />
+      <mat-icon
+        matSuffix
+        (click)="hideConfirmPassword = !hideConfirmPassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hideConfirmPassword"
+        >{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon
+      >
+      <mat-error *ngIf="RegistrationForm.hasError('passwordsNotEqual')"
+        >Пароли не совпадают</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <span matPrefix>+375 &nbsp;</span>
+      <input
+        formControlName="phone"
+        matInput
+        maxlength="9"
+        type="number"
+        placeholder="Введите номер телефона"
+      />
+      <mat-icon matSuffix>mode_edit</mat-icon>
+      <mat-error *ngIf="RegistrationForm.get('phone').hasError('required')">
+        Поле не может быть пустым
+      </mat-error>
+      <mat-error *ngIf="RegistrationForm.get('phone').hasError('pattern')">
+        Номер должен состоять из 9 цифр
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input
+        formControlName="username"
+        matInput
+        placeholder="Введите ваше имя"
+      />
+      <mat-error *ngIf="RegistrationForm.get('username').hasError('required')">
+        Поле не может быть пустым
+      </mat-error>
+      <mat-icon matSuffix>account_box</mat-icon>
+    </mat-form-field>
+    <button
+      mat-stroked-button
+      mat-dialog-close
+      color="primary"
+      [disabled]="RegistrationForm.invalid"
+      type="submit"
+    >
+      Регистрация
+    </button>
+  </form>
+</div>
+<div mat-dialog-actions class="close">
+  <button mat-button mat-dialog-close>Закрыть</button>
+</div>

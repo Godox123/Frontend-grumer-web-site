@@ -1,0 +1,83 @@
+.header {
+	mat-grid-list {
+		background-image: url(https://firebasestorage.googleapis.com/v0/b/dogswebsite-ae5d3.appspot.com/o/429416-svetik.jpg?alt=media&token=e5e7853b-ece4-4f37-94f6-0af34b8ddd31);
+		background-position: top center;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-size: 71ch auto;
+	}
+
+	@media all and (min-width: 319px) and (max-width: 999px) {
+		mat-grid-list {
+			background-size: 48ch auto;
+		}
+	}
+
+	.cite-name {
+		margin-bottom: 11ch;
+	}
+	@media all and (min-width: 319px) and (max-width: 999px) {
+		.cite-name {
+			margin-bottom: 15ch;
+		}
+	}
+
+	a {
+		color: rgb(14, 13, 13);
+		text-decoration: none;
+	}
+	h2 {
+		font-family: Monotype Corsiva, cursive;
+		font-size: 8ch;
+	}
+	@media all and (min-width: 319px) and (max-width: 999px) {
+		h2 {
+			font-size: 4ch;
+		}
+	}
+
+	nav {
+		display: flex;
+		justify-content: start;
+		flex-direction: column;
+		margin-bottom: 13ch;
+
+		ul {
+			margin: 0;
+			padding: 0;
+			li {
+				display: inline;
+				button {
+					margin-right: 15px;
+					padding: 0;
+					a {
+						font-family: URW Chancery L, cursive;
+						font-size: 2.2ch;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+		.burger {
+			display: none;
+		}
+	}
+	@media all and (min-width: 319px) and (max-width: 999px) {
+		nav {
+			margin-top: -5ch;
+			margin-right: -15ch;
+			ul {
+				display: none;
+			}
+			.burger {
+				display: block;
+				button {
+					.mobile-menu {
+						color: white;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
+}

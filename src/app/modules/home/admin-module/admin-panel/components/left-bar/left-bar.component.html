@@ -1,0 +1,25 @@
+<div class="admin-bar admin-bar-body">
+  <a class="back-link" mat-button routerLink="/" target="_blank">
+    <mat-icon>reply</mat-icon>Вернуться на главную страницу</a
+  >
+
+  <h1 class="title-admin-panel">Панель администратора</h1>
+
+  <div class="navigation navigation-body">
+    <button routerLink="/admin" mat-raised-button color="primary">
+      Статистика
+    </button>
+
+    <button routerLink="/admin/users" mat-raised-button color="primary">
+      Пользователи
+    </button>
+
+    <button mat-raised-button routerLink="/admin/reservations" color="primary">
+      Бронирования
+    </button>
+
+    <button mat-raised-button routerLink="/admin/portfolio" color="primary">
+      Портфолио
+    </button>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="header">
+  <mat-grid-list cols="2" rowHeight="30ch">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <div class="cite-name">
+        <a routerLink="">
+          <h2>Грумер Ирина</h2>
+        </a>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <nav>
+        <ul>
+          <li>
+            <button mat-button color="warn">
+              <a routerLink="/services">Услуги</a>
+            </button>
+          </li>
+          <li>
+            <button mat-button color="warn">
+              <a routerLink="/profile">Личный кабинет</a>
+            </button>
+          </li>
+          <li>
+            <button color="warn" mat-button>
+              <a routerLink="/contacts">Контакты</a>
+            </button>
+          </li>
+          <li>
+            <button color="warn" mat-button>
+              <a routerLink="/portfolio">Портфолио</a>
+            </button>
+          </li>
+          <li *ngIf="(user$ | async) === null" selected>
+            <button color="warn" mat-button>
+              <a routerLink="/auth">Вход</a>
+            </button>
+          </li>
+          <li *ngIf="(user$ | async) != null" selected>
+            <button color="warn" mat-button>
+              <a>Выход</a>
+            </button>
+          </li>
+        </ul>
+        <div class="burger">
+          <mat-button-toggle
+            [matMenuTriggerFor]="menu"
+            value="justify"
+            aria-label="Text align justify"
+          >
+            <mat-icon>format_align_justify</mat-icon>
+          </mat-button-toggle>
+          <mat-menu #menu="matMenu">
+            <button routerLink="/services" mat-menu-item>
+              <mat-icon>pets</mat-icon>
+              <span>Services</span>
+            </button>
+            <button mat-menu-item routerLink="/profile">
+              <mat-icon>home</mat-icon>
+              <span>Profile</span>
+            </button>
+            <button mat-menu-item routerLink="/contacts">
+              <mat-icon>settings_phone</mat-icon>
+              <span>Contacts</span>
+            </button>
+            <button mat-menu-item routerLink="/portfolio">
+              <mat-icon>work</mat-icon>
+              <span>Portfolio</span>
+            </button>
+            <button
+              *ngIf="(user$ | async) === null"
+              mat-menu-item
+              routerLink="/auth"
+            >
+              <mat-icon>face</mat-icon>
+              <span>Login</span>
+            </button>
+            <button *ngIf="(user$ | async) != null" mat-menu-item routerLink="">
+              <mat-icon>power_settings_new</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </div>
+      </nav>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

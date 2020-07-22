@@ -1,0 +1,79 @@
+.forgot-container {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+	.back-auth {
+		margin-right: 2%;
+	}
+	.back-auth-mobile {
+		display: none;
+	}
+	@media all and (min-width: 319px) and (max-width: 999px) {
+		.back-auth {
+			display: none;
+		}
+		.back-auth-mobile {
+			display: block;
+			align-self: flex-start;
+			margin-top: -20%;
+		}
+	}
+	.forgot-control {
+		width: 40ch;
+		height: 30ch;
+		background: rgba(151, 151, 110, 0.6);
+		border: 1px solid rgb(214, 218, 20);
+		border-radius: 5px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		.success-message {
+			width: 35ch;
+			border: 1px solid rgb(33, 180, 19);
+			border-radius: 5px;
+			background: rgba(126, 251, 24, 0.6);
+			display: flex;
+			justify-content: center;
+			margin-top: 2%;
+
+			p {
+				font-family: Century Gothic, sans-serif;
+			}
+		}
+	}
+	.error-message {
+		width: 35ch;
+		border: 1px solid red;
+		border-radius: 5px;
+		background: rgba(250, 73, 73, 0.6);
+		display: flex;
+		justify-content: center;
+		margin-top: 2%;
+		p {
+			font-family: Century Gothic, sans-serif;
+		}
+	}
+	mat-form-field {
+		padding-top: 4%;
+		mat-error {
+			font-size: 12px;
+		}
+	}
+	@media all and (min-width: 319px) and (max-width: 999px) {
+		mat-form-field {
+			padding-top: 18%;
+		}
+	}
+	button {
+		margin-left: 5px;
+		font-size: 10px;
+	}
+}
+
+.mat-form-field-wrapper {
+	margin: 0;
+	padding: 0;
+}

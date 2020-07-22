@@ -1,0 +1,35 @@
+mat-icon {
+	cursor: pointer;
+}
+
+.reset-container {
+	height: 100ch;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	a {
+		margin-bottom: 10%;
+		align-self: flex-start;
+	}
+	.reset-control {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		height: 35ch;
+		.password {
+			border-top: 1px solid black;
+		}
+	}
+	button {
+		align-self: flex-end;
+		margin-top: 4%;
+	}
+}
+@media screen and (orientation: portrait) {
+	.reset-container {
+		height: 100vh;
+	}
+}

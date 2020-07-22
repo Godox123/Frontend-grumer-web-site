@@ -1,0 +1,31 @@
+//position
+.admin-bar {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+
+	.title-admin-panel {
+		margin: 5vh auto;
+	}
+	.navigation {
+		display: flex;
+		margin: 0 auto;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+}
+//styles
+.admin-bar-body {
+	height: 100%;
+	font-family: MS Sans Serif, sans-serif;
+	background: linear-gradient(to top, #30d621, #b0f185);
+	.title-admin-panel {
+		border-top: 1px solid black;
+		border-bottom: 1px solid black;
+		color: #6e1c1c;
+	}
+	.navigation-body {
+		height: 30vh;
+	}
+}

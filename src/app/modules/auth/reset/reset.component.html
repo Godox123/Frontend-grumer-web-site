@@ -1,0 +1,63 @@
+<div class="reset-container">
+  <form
+    class="reset-control"
+    novalidate
+    (ngSubmit)="reset()"
+    [formGroup]="resetForm"
+  >
+    <a mat-raised-button routerLink="/">Венуться на главную</a>
+    <span class="password">
+      <mat-form-field>
+        <input
+          formControlName="password"
+          matInput
+          placeholder="Введите новый пароль"
+          [type]="hidePassword ? 'password' : 'text'"
+        />
+        <mat-error *ngIf="resetForm.get('password').hasError('required')">
+          Поле не может быть пустым
+        </mat-error>
+        <mat-error *ngIf="resetForm.get('password').hasError('minlength')">
+          Короткий пароль (Минимум 6 символов)
+        </mat-error>
+      </mat-form-field>
+
+      <mat-icon
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+        >{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon
+      >
+    </span>
+    <span>
+      <mat-form-field>
+        <input
+          [errorStateMatcher]="passwordsMatcher"
+          formControlName="passwordAgain"
+          matInput
+          placeholder="Подтвердите новый пароль"
+          [type]="hideConfirmPassword ? 'password' : 'text'"
+        />
+        <mat-error *ngIf="resetForm.hasError('passwordsNotEqual')"
+          >Пароли не совпадают</mat-error
+        >
+      </mat-form-field>
+
+      <mat-icon
+        (click)="hideConfirmPassword = !hideConfirmPassword"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+        >{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon
+      >
+    </span>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      [disabled]="resetForm.invalid"
+      type="submit"
+    >
+      Изменить
+    </button>
+  </form>
+</div>
