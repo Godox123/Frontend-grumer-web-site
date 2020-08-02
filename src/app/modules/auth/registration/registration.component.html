@@ -1,19 +1,19 @@
 <div mat-dialog-content class="registration-container">
+  <h1 mat-dialog-title>Регистрация</h1>
   <form
     class="form"
     novalidate
     (ngSubmit)="SignUp()"
     [formGroup]="RegistrationForm"
   >
-    <h1 mat-dialog-title>Регистрация</h1>
     <mat-form-field appearance="fill">
       <input formControlName="email" matInput placeholder="Введите ваш Email" />
       <mat-icon matSuffix>attach_email</mat-icon>
+      <mat-error *ngIf="RegistrationForm.get('email').hasError('email')">
+        Не валидный email.
+      </mat-error>
       <mat-error *ngIf="RegistrationForm.get('email').hasError('required')">
         Поле не может быть пустым.
-      </mat-error>
-      <mat-error *ngIf="RegistrationForm.controls['email'].touched"
-        >Не валидный email.
       </mat-error>
     </mat-form-field>
 
@@ -98,5 +98,5 @@
   </form>
 </div>
 <div mat-dialog-actions class="close">
-  <button mat-button mat-dialog-close>Закрыть</button>
+  <button mat-stroked-button mat-dialog-close color="primary">Закрыть</button>
 </div>
