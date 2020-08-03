@@ -1,1 +1,9 @@
-<p>users works!</p>
+<div *ngIf="users$ | async">
+  <div *ngFor="let user of users$ | async">
+    <p>{{ user.email }}</p>
+    <p>{{ user.username }}</p>
+    <p>{{ user.phone }}</p>
+    <p>{{ user.creation_dt }}</p>
+    <button (click)="openDialog(user._id)">test</button>
+  </div>
+</div>

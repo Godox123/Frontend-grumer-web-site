@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class UsersService {
-  public url: string = environment.urlApi;
+  private url: string = environment.urlApi;
 
   constructor(private http: HttpClient) {}
 
@@ -14,6 +14,6 @@ export class UsersService {
   }
 
   public deleteUser(id: string): Observable<Object> {
-    return this.http.post(`${this.url}/auth/${id}`, { observe: 'response' });
+    return this.http.delete(`${this.url}/auth/${id}`, { observe: 'response' });
   }
 }

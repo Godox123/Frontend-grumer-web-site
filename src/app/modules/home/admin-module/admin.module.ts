@@ -8,11 +8,15 @@ import { RightBarComponent } from './admin-panel/components/right-bar/right-bar.
 import { UsersComponent } from './admin-panel/components/users/users.component';
 import { ReservationsComponent } from './admin-panel/components/reservations/reservations.component';
 import { SetPortfolioComponent } from './admin-panel/components/set-portfolio/set-portfolio.component';
-import { CommentsService } from '../services/comments.service';
-import { PortfolioCollectionService } from '../services/portfolio-collection.service';
-import { ReservationService } from '../services/reservation.service';
 import { UsersService } from '../services/users.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UserDeleteConfirmationComponent } from './admin-panel/components/users/components/user-delete-confirmation/user-delete-confirmation.component';
+import { DeleteResponseMessagesComponent } from './admin-panel/components/users/components/delete-response-messages/delete-response-messages.component';
+import { DeleteReservationModalComponent } from './admin-panel/components/reservations/components/delete-reservation-modal/delete-reservation-modal.component';
+import { UpdateReservationModalComponent } from './admin-panel/components/reservations/components/update-reservation-modal/update-reservation-modal.component';
+import { SetReservationModalComponent } from './admin-panel/components/reservations/components/set-reservation-modal/set-reservation-modal.component';
+import { ConfirmationMessagesComponent } from './admin-panel/components/reservations/components/confirmation-messages/confirmation-messages.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -34,19 +38,30 @@ const routes: Routes = [
     RightBarComponent,
     UsersComponent,
     ReservationsComponent,
-    SetPortfolioComponent
+    SetPortfolioComponent,
+    UserDeleteConfirmationComponent,
+    DeleteResponseMessagesComponent,
+    DeleteReservationModalComponent,
+    UpdateReservationModalComponent,
+    SetReservationModalComponent,
+    ConfirmationMessagesComponent
+  ],
+  entryComponents: [
+    UserDeleteConfirmationComponent,
+    DeleteResponseMessagesComponent,
+    DeleteReservationModalComponent,
+    UpdateReservationModalComponent,
+    SetReservationModalComponent,
+    ConfirmationMessagesComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     MaterialAppModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [
-    CommentsService,
-    PortfolioCollectionService,
-    ReservationService,
-    UsersService
-  ]
+  providers: [UsersService]
 })
 export class AdminModule {}

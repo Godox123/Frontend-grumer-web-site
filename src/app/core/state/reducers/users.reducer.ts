@@ -3,7 +3,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { User } from 'src/app/modules/auth/models/user.model';
 import { UsersActions } from '../actions/users.actions';
 
-export const UsersKey = '2ewa_3431@413#da123,ss2214DsqIrwxg';
+export const UsersKey = 'UsersKey';
 
 export interface UsersState {
   users: User[];
@@ -25,15 +25,16 @@ const _usersReducer = createReducer(
   })),
   on(UsersActions.getUsersFailedAction, (state, response) => ({
     ...state,
-    users: response.error
+    errMessage: response.error
   })),
   on(UsersActions.deleteUserSuccessAction, (state, response) => ({
     ...state,
+    users: response.users,
     successMessage: response.message
   })),
   on(UsersActions.deleteUserFailedAction, (state, response) => ({
     ...state,
-    users: response.err
+    errMessage: response.err
   }))
 );
 

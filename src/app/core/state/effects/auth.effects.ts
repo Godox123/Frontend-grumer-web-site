@@ -30,10 +30,16 @@ export class LoginEffect {
             localStorage.setItem('isLoggedIn', JSON.stringify(true));
             return authActions.loginSuccessAction();
           }),
-          catchError(error => {
-            const err = error.error.message;
-            return of(authActions.loginFailedAction({ err }));
-          })
+          catchError(
+            (error: {
+              error: {
+                message: string;
+              };
+            }) => {
+              const err = error.error.message;
+              return of(authActions.loginFailedAction({ err }));
+            }
+          )
         );
       })
     )
@@ -64,7 +70,9 @@ export class LoginEffect {
                 localStorage.setItem('isLoggedIn', JSON.stringify(true));
                 return authActions.signUpSuccessAction();
               }),
-              catchError(error => of(authActions.signUpFailedAction({ error })))
+              catchError((error: Error) =>
+                of(authActions.signUpFailedAction({ error }))
+              )
             );
         }
       )
@@ -80,7 +88,7 @@ export class LoginEffect {
             localStorage.setItem('isLoggedIn', JSON.stringify(true));
             return authActions.getUserSuccessAction({ user });
           }),
-          catchError(error => {
+          catchError((error: Error) => {
             localStorage.setItem('isLoggedIn', JSON.stringify(false));
             return of(authActions.getUserFailedAction({ error }));
           })
@@ -100,11 +108,16 @@ export class LoginEffect {
                 'На вашу электронную почту была выслана ссылка на изменение пароля.'
             });
           }),
-          catchError(error => {
-            console.log(error.error.message);
-            const err = error.error.message;
-            return of(authActions.forgotFailedAction({ err }));
-          })
+          catchError(
+            (error: {
+              error: {
+                message: string;
+              };
+            }) => {
+              const err = error.error.message;
+              return of(authActions.forgotFailedAction({ err }));
+            }
+          )
         );
       })
     )
@@ -115,7 +128,6 @@ export class LoginEffect {
       ofType(authActions.resetAction),
       withLatestFrom(this.store$.pipe(select(resetToken))),
       exhaustMap(([data, resetToken]) => {
-        console.log(data, resetToken);
         return this.authService.reset(data.password, resetToken).pipe(
           map(() =>
             authActions.resetSuccessAction({
@@ -124,11 +136,16 @@ export class LoginEffect {
           )
         );
       }),
-      catchError(error => {
-        console.log(error.error.message);
-        const err = error.error.message;
-        return of(authActions.resetFailedAction({ err }));
-      })
+      catchError(
+        (error: {
+          error: {
+            message: string;
+          };
+        }) => {
+          const err = error.error.message;
+          return of(authActions.resetFailedAction({ err }));
+        }
+      )
     );
   });
 }

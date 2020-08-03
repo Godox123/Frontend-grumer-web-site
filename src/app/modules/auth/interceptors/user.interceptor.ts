@@ -7,8 +7,8 @@ import {
   HttpEvent,
   HttpResponse
 } from '@angular/common/http';
-import { Observable, throwError, empty, Subject, Subscribable } from 'rxjs';
-import { catchError, tap, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class UserInterceptor implements HttpInterceptor {

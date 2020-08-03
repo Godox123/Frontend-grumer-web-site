@@ -22,7 +22,8 @@ export const UsersActions = {
   deleteUserSuccessAction: createAction(
     '[DeleteUserSuccessAction Page] DeleteUserSuccessAction',
     props<{
-      message: 'Пользователь успешно удален';
+      users: User[];
+      message: string;
     }>()
   ),
   deleteUserFailedAction: createAction(

@@ -11,6 +11,9 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { MaterialAppModule } from 'src/app/angular-material.module';
 import { AdminModule } from './admin-module/admin.module';
+import { CommentsService } from './services/comments.service';
+import { PortfolioCollectionService } from './services/portfolio-collection.service';
+import { ReservationService } from './services/reservation.service';
 
 const routes: Routes = [
   {
@@ -46,6 +49,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MaterialAppModule,
     AdminModule
-  ]
+  ],
+  providers: [CommentsService, PortfolioCollectionService, ReservationService]
 })
 export class HomeModule {}

@@ -1,1 +1,17 @@
-<p>reservations works!</p>
+<div *ngIf="reservations$ | async">
+  <div *ngFor="let reservation of reservations$ | async">
+    <p>{{ reservation.email }}</p>
+    <p>{{ reservation.username }}</p>
+    <p>{{ reservation.phone }}</p>
+    <p>{{ reservation.selectDate }}</p>
+    <p>{{ reservation.selectTime }}</p>
+    <p>{{ reservation.selectService }}</p>
+    <button (click)="openDeleteDialog(reservation._id)">delete</button>
+    <button
+      (click)="openUpdateDialog(reservation._id, reservation.selectService)"
+    >
+      Update
+    </button>
+    <button (click)="openAddReservationDialog()">AddReserviton</button>
+  </div>
+</div>

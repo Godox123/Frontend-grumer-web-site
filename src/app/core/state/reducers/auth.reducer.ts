@@ -2,7 +2,7 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { authActions } from '../actions/auth.actions';
 import { User } from 'src/app/modules/auth/models/user.model';
 
-export const AuthKey = '@sdf4#shf_sa1QQfsgq';
+export const AuthKey = 'AuthKey';
 
 export interface UserState {
   loginError: string;
