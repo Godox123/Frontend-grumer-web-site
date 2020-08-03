@@ -1,15 +1,15 @@
 <div class="login-container">
   <a class="return-home" routerLink="/">Вернуться на главную... --></a>
   <div class="form-container">
-    <span *ngIf="errMsg | async" class="error-message"
-      ><p>{{ errMsg | async }}</p></span
-    >
     <form
       class="class-control"
       novalidate
       (ngSubmit)="login()"
       [formGroup]="loginForm"
     >
+      <div *ngIf="errMsg | async" class="error-message">
+        <p>{{ errMsg | async }}</p>
+      </div>
       <div class="example-container">
         <mat-form-field appearance="fill">
           <mat-label>Введети ваш email</mat-label>
@@ -53,21 +53,20 @@
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="login">
-        <button
-          class="signIn"
-          mat-stroked-button
-          [disabled]="loginForm.invalid"
-          type="submit"
-        >
-          Войти
-        </button>
-
-        <div class="forgot-sign-up">
-          <a class="forgot" routerLink="/forgot"><p>Забыли пароль?</p></a>
-          <a mat-button class="sign-up" (click)="openDialog()">
+      <div class="login-controls">
+        <a class="forgot" routerLink="/forgot"><p>Забыли пароль?</p></a>
+        <div class="control-buttons">
+          <button
+            class="signIn"
+            mat-stroked-button
+            [disabled]="loginForm.invalid"
+            type="submit"
+          >
+            Войти
+          </button>
+          <button mat-stroked-button class="sign-up" (click)="openDialog()">
             Регистрация
-          </a>
+          </button>
         </div>
       </div>
     </form>
