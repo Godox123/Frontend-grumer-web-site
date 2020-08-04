@@ -3,15 +3,22 @@
     <p>{{ reservation.email }}</p>
     <p>{{ reservation.username }}</p>
     <p>{{ reservation.phone }}</p>
-    <p>{{ reservation.selectDate }}</p>
+    <p>{{ reservation.selectDate | date: 'dd/MM/yyyy' }}</p>
     <p>{{ reservation.selectTime }}</p>
     <p>{{ reservation.selectService }}</p>
     <button (click)="openDeleteDialog(reservation._id)">delete</button>
     <button
-      (click)="openUpdateDialog(reservation._id, reservation.selectService)"
+      (click)="
+        openUpdateDialog(
+          reservation._id,
+          reservation.selectService,
+          reservation.selectDate,
+          reservation.selectTime
+        )
+      "
     >
       Update
     </button>
-    <button (click)="openAddReservationDialog()">AddReserviton</button>
   </div>
+  <button (click)="openAddReservationDialog()">AddReserviton</button>
 </div>

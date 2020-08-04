@@ -1,6 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { Reservation } from 'src/app/modules/home/models/reservation.model';
 import { ReservationsActions } from '../actions/reservation.actions';
+import { state } from '@angular/animations';
 
 export const ReservationsKey = 'ReservationsKey';
 
@@ -54,6 +55,10 @@ const _reservationsReducer = createReducer(
   on(ReservationsActions.deleteReservationFailedAction, (state, response) => ({
     ...state,
     errMessage: response.error
+  })),
+  on(ReservationsActions.getSelectedDateSuccessAction, (state, response) => ({
+    ...state,
+    reservationTime: response.reservationTime
   }))
 );
 

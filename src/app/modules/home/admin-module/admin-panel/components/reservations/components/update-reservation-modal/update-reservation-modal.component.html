@@ -14,12 +14,12 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field *ngIf="reservationTime | async" appearance="fill">
       <mat-label>Select</mat-label>
       <mat-select formControlName="selectTime">
-        <mat-option *ngIf="checkA()" value="{{ a }}">09:00 - 12:00</mat-option>
-        <mat-option *ngIf="checkB()" value="{{ b }}">12:00 - 15:00</mat-option>
-        <mat-option *ngIf="checkC()" value="{{ c }}">15:00 - 18:00</mat-option>
+        <mat-option *ngIf="visibleA" value="{{ a }}">09:00 - 12:00</mat-option>
+        <mat-option *ngIf="visibleB" value="{{ b }}">12:00 - 15:00</mat-option>
+        <mat-option *ngIf="visibleC" value="{{ c }}">15:00 - 18:00</mat-option>
       </mat-select>
     </mat-form-field>
   </form>

@@ -32,11 +32,18 @@ export class ReservationsComponent implements OnInit {
       }
     });
   }
-  public openUpdateDialog(id: string, service: string): void {
+  public openUpdateDialog(
+    id: string,
+    service: string,
+    date: Date,
+    time: number
+  ): void {
     this.dialog.open(UpdateReservationModalComponent, {
       data: {
         userId: id,
-        selectedService: service
+        selectedService: service,
+        selectedDate: date,
+        selectedTime: time
       }
     });
   }

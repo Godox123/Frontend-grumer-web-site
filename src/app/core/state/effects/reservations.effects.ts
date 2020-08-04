@@ -33,79 +33,26 @@ export class ReservationsEffect {
         this.storeReservations$.pipe(select(reservationsInformation))
       ),
       map(([data, allResaervations]) => {
-        console.log(data, allResaervations);
         const reservationTime: number[] = [];
-
         allResaervations.forEach((element: Reservation) => {
           if (
-            element.selectDate === data.selectDate &&
+            new Date(element.selectDate).getDate() ===
+              new Date(data.selectDate).getDate() &&
             element.selectService === data.selectService
           ) {
+            console.log('work');
             reservationTime.push(element.selectTime);
+          } else {
+            console.log('else');
           }
         });
+        console.log(reservationTime);
         return ReservationsActions.getSelectedDateSuccessAction({
           reservationTime
         });
       })
     )
   );
-
-  //   private getReservations: Observable<Action> = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(ReservationsActions.getReservationsAction),
-  //     exhaustMap(() => {
-  //       return this.reservationService.getReservations().pipe(
-  //         map((resp: { body: Reservation[] }) => {
-  //           let reservations = resp.body;
-  //           console.log(reservations);
-  //           return ReservationsActions.getReservationsSuccessAction({
-  //             reservations
-  //           });
-  //         }),
-  //         catchError((error: Error) => {
-  //           console.log(error);
-  //           return of(
-  //             ReservationsActions.getReservationsFailedAction({ error })
-  //           );
-  //         })
-  //       );
-  //     })
-  //   )
-  // );
-
-  // @Effect()
-  // public gettingInfromation: Observable<Action> = this.actions$.pipe(
-  //   ofType(UserStateActions.GettingSelectedReservationAction),
-  //   map((data: GettingSelectedReservationAction) => data.payload),
-  //   withLatestFrom(
-  //     this.storeUser$.pipe(select(selectUsersReservationStateEvents))
-  //   ),
-  //   map(([data, allReservations]) => {
-  //     const result: number[] = [];
-  //     allReservations.forEach((elem: UserModel) => {
-  //       if (
-  //         elem.reservationDate === data.reservationDate &&
-  //         elem.gymName === data.gymName &&
-  //         elem.email !== data.email
-  //       ) {
-  //         const from = elem.initialTime;
-  //         let to = elem.endTime;
-  //         while (to >= from) {
-  //           result.push(to);
-  //           to = to - 1;
-  //         }
-  //       }
-  //     });
-  //     return new GettingSelectedReservationSuccessAction(result);
-  //   }),
-  //   catchError(
-  //     (error: Error, caught: Observable<Action>): Observable<Action> => {
-  //       this.store$.dispatch(new GettingSelectedReservationFailedAction(error));
-  //       return caught;
-  //     }
-  //   )
-  // );
 
   private getReservations: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
@@ -152,7 +99,8 @@ export class ReservationsEffect {
               action.selectService
             )
             .pipe(
-              map((response: Reservation[]) => {
+              map((resp: { body: Reservation[] }) => {
+                let response = resp.body;
                 return ReservationsActions.setReservationSuccessAction({
                   reservations: response,
                   successMessage: 'Бронирование успешно добавлено'
