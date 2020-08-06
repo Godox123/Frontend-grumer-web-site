@@ -1,11 +1,11 @@
 <p>update-reservation-modal works!</p>
 
-<div class="example-container">
-  <form [formGroup]="updateReservationForm" novalidate>
-    <mat-form-field class="example-full-width" appearance="fill">
+<div class="update-container">
+  <form class="update-form" [formGroup]="updateReservationForm" novalidate>
+    <mat-form-field class="update-form__input-date-picker" appearance="fill">
       <mat-label>Choose a date</mat-label>
       <input
-        (ngModelChange)="test($event)"
+        (ngModelChange)="selectDate()"
         formControlName="selectDate"
         matInput
         [matDatepickerFilter]="myFilter"
@@ -14,100 +14,31 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <mat-form-field *ngIf="reservationTime | async" appearance="fill">
-      <mat-label>Select</mat-label>
-      <mat-select formControlName="selectTime">
-        <mat-option *ngIf="visibleA" value="{{ a }}">09:00 - 12:00</mat-option>
-        <mat-option *ngIf="visibleB" value="{{ b }}">12:00 - 15:00</mat-option>
-        <mat-option *ngIf="visibleC" value="{{ c }}">15:00 - 18:00</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div
+      class="update-from__input-reservation-time-container"
+      *ngIf="visible; else unset"
+    >
+      <mat-form-field
+        class="update-form__input-reservation-time"
+        *ngIf="reservationTime | async"
+        appearance="fill"
+      >
+        <mat-label>Select</mat-label>
+        <mat-select formControlName="selectTime">
+          <mat-option *ngIf="visibleNine" value="{{ nine }}"
+            >09:00 - 12:00</mat-option
+          >
+          <mat-option *ngIf="visibleTwelve" value="{{ twelve }}"
+            >12:00 - 15:00</mat-option
+          >
+          <mat-option *ngIf="visibleFifteen" value="{{ fifteen }}"
+            >15:00 - 18:00</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <ng-template #unset>
+      <p>Свободного времени нет</p>
+    </ng-template>
   </form>
 </div>
-
-<!-- <nz-date-picker
-[nzDisabledDate]="disabledDate"
-formControlName="reservationDate"
-(ngModelChange)="onTitleChange($event)"
-nzFormat="yyyy/MM/dd"
-nzPlaceHolder="Select date"
-> -->
-<!-- <mat-error *ngIf="selected.hasError('required')"
-    >You must make a selection</mat-error
-  >
-  <mat-error
-    *ngIf="selected.hasError('pattern') && !selected.hasError('required')"
-  >
-    Your selection is invalid
-  </mat-error> -->
-
-<!-- 
-<form
-      class="class-control"
-      novalidate
-      (ngSubmit)="login()"
-      [formGroup]="loginForm"
-    >
-      <div class="example-container">
-        <mat-form-field appearance="fill">
-          <mat-label>Введети ваш email</mat-label>
-          <input
-            autocomplete="off"
-            class="example-right-align"
-            formControlName="email"
-            matInput
-          />
-          <mat-error
-            *ngIf="
-              loginForm.controls['email'].invalid &&
-              loginForm.controls['email'].touched
-            "
-            >Не верно указан Email
-          </mat-error>
-        </mat-form-field>
-        <br />
-        <mat-form-field appearance="fill">
-          <mat-label>Введите ваш пароль</mat-label>
-          <input
-            autocomplete="off"
-            formControlName="password"
-            matInput
-            [type]="hide ? 'password' : 'text'"
-          />
-
-          <mat-icon
-            matSuffix
-            (click)="hide = !hide"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide"
-            >{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon
-          >
-          <mat-error
-            *ngIf="
-              loginForm.controls['password'].invalid &&
-              loginForm.controls['password'].touched
-            "
-            >Слишком короткий пароль
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="login">
-        <button
-          class="signIn"
-          mat-stroked-button
-          [disabled]="loginForm.invalid"
-          type="submit"
-        >
-          Войти
-        </button>
-
-        <div class="forgot-sign-up">
-          <a class="forgot" routerLink="/forgot"><p>Забыли пароль?</p></a>
-          <a mat-button class="sign-up" (click)="openDialog()">
-            Регистрация
-          </a>
-        </div>
-      </div>
-    </form>
-  </div>
-</div> -->

@@ -21,6 +21,21 @@ export const initialState = {
 
 const _reservationsReducer = createReducer(
   initialState,
+  on(
+    ReservationsActions.clearReservationTimeSuccessAction,
+    (state, response) => ({
+      ...state,
+      reservationTime: null,
+      successMessage: response.successMessage
+    })
+  ),
+  on(
+    ReservationsActions.clearReservationTimeFailedAction,
+    (state, response) => ({
+      ...state,
+      errMessage: response.errMessage
+    })
+  ),
   on(ReservationsActions.getReservationsSuccessAction, (state, response) => ({
     ...state,
     reservations: response.reservations
@@ -32,6 +47,7 @@ const _reservationsReducer = createReducer(
   on(ReservationsActions.setReservationSuccessAction, (state, response) => ({
     ...state,
     reservations: response.reservations,
+    reservationTime: null,
     successMessage: response.successMessage
   })),
   on(ReservationsActions.setReservationFailedAction, (state, response) => ({

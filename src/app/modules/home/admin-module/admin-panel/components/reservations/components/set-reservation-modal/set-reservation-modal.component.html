@@ -35,18 +35,22 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field class="content__input-selectService">
+        <!-- <mat-select *ngfor="let service for PortfolioServicesNames"></mat-select> -->
         <mat-select
           placeholder="Выберите сервис"
           formControlName="selectService"
         >
+          <!--<mat-option value="{{service.name}}">{{service.name}}</mat-option>-->
           <mat-option value="service1">Service1</mat-option>
           <mat-option value="service2">Service2</mat-option>
           <mat-option value="service3">Service3</mat-option>
         </mat-select>
       </mat-form-field>
+      <!-- <mat-form-field *ngIf="PortfolioServicesNames | async" class="content__input-selectDate"> -->
       <mat-form-field class="content__input-selectDate">
         <mat-label>Выберите дату</mat-label>
         <input
+          (ngModelChange)="selectDate()"
           formControlName="selectDate"
           matInput
           [matDatepickerFilter]="myFilter"
@@ -55,39 +59,34 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <mat-form-field class="content__input-selectTime">
-        <mat-select formControlName="selectTime" placeholder="Выберите время">
-          <mat-option value="9">09:00-12:00</mat-option>
-          <mat-option value="12">12:00-15:00</mat-option>
-          <mat-option value="15">15:00-18:00</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div
+        class="set-reservation-form__input-reservation-time-container"
+        *ngIf="visible; else unset"
+      >
+        <mat-form-field
+          class="content__input-selectTime"
+          *ngIf="reservationTime | async"
+        >
+          <mat-select formControlName="selectTime" placeholder="Выберите время">
+            <mat-option *ngIf="visibleNine" value="{{ nine }}"
+              >09:00</mat-option
+            >
+            <mat-option *ngIf="visibleTwelve" value="{{ twelve }}"
+              >12:00</mat-option
+            >
+            <mat-option *ngIf="visibleFifteen" value="{{ fifteen }}"
+              >15:00</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <ng-template #unset>
+        <p>Свободного времени нет</p>
+      </ng-template>
     </div>
     <button mat-button mat-dialog-close type="submit">
       Добавить бронирование
     </button>
+    <button (click)="close()">close</button>
   </form>
 </div>
-<!-- <div class="reset-container">
-    <form
-      class="reset-control"
-      novalidate
-      (ngSubmit)="reset()"
-      [formGroup]="resetForm"
-    >
-      <a mat-raised-button routerLink="/">Венуться на главную</a>
-      <span class="password">
-        <mat-form-field>
-          <input
-            formControlName="password"
-            matInput
-            placeholder="Введите новый пароль"
-            [type]="hidePassword ? 'password' : 'text'"
-          />
-          <mat-error *ngIf="resetForm.get('password').hasError('required')">
-            Поле не может быть пустым
-          </mat-error>
-          <mat-error *ngIf="resetForm.get('password').hasError('minlength')">
-            Короткий пароль (Минимум 6 символов)
-          </mat-error>
-        </mat-form-field> -->

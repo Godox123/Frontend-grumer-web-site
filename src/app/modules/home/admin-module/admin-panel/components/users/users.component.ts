@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
   public users$: Observable<User[]> = this.store$.pipe(
     select(usersInformation)
   );
-  displayedColumns: string[] = [
+  public displayedColumns: string[] = [
     'username',
     'email',
     'phone',

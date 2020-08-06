@@ -1,6 +1,6 @@
 .header {
 	mat-grid-list {
-		background-image: url(https://firebasestorage.googleapis.com/v0/b/dogswebsite-ae5d3.appspot.com/o/429416-svetik.jpg?alt=media&token=e5e7853b-ece4-4f37-94f6-0af34b8ddd31);
+		background-image: url(https://firebasestorage.googleapis.com/v0/b/dogswebsite-ae5d3.appspot.com/o/rsz_429416-svetik.jpg?alt=media&token=3001d2b6-0fc5-4b58-9fec-f07d5c010b40);
 		background-position: top center;
 		background-attachment: fixed;
 		background-repeat: no-repeat;
@@ -51,10 +51,14 @@
 					margin-right: 15px;
 					padding: 0;
 					a {
-						font-family: URW Chancery L, cursive;
+						font-family: Brush Script MT, Brush Script Std, cursive;
 						font-size: 2.2ch;
 						font-weight: bold;
 					}
+				}
+				button:hover {
+					transition: 1s;
+					background-color: rgb(245, 163, 12);
 				}
 			}
 		}

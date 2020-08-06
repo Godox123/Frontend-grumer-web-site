@@ -33,7 +33,7 @@ export class ReservationsEffect {
         this.storeReservations$.pipe(select(reservationsInformation))
       ),
       map(([data, allResaervations]) => {
-        const reservationTime: number[] = [];
+        let reservationTime: number[] = [];
         allResaervations.forEach((element: Reservation) => {
           if (
             new Date(element.selectDate).getDate() ===

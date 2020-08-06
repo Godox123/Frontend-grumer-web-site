@@ -48,7 +48,11 @@ export class ReservationsComponent implements OnInit {
     });
   }
   public openAddReservationDialog(): void {
-    this.dialog.open(SetReservationModalComponent);
+    const dialogRef = this.dialog.open(SetReservationModalComponent);
+    dialogRef.afterClosed().subscribe(() => {
+      this.store$.dispatch(ReservationsActions.clearReservationTimeAction());
+      console.log('cleared');
+    });
   }
 
   public ngOnInit(): void {

@@ -30,25 +30,15 @@ export class UpdateReservationModalComponent implements OnInit {
   public reservationTime: Observable<number[]> = this.store$.pipe(
     select(reservationsTime)
   );
-  visibleA: boolean = true;
-  visibleB: boolean = true;
-  visibleC: boolean = true;
-  A(arr) {
-    if (arr.includes(this.a)) {
-      return (this.visibleA = false);
-    }
-    if (arr.includes(this.b)) {
-      this.visibleB = false;
-    }
-    if (arr.includes(this.c)) {
-      this.visibleC = false;
-    }
-    return true;
-  }
 
-  public a: number = 9;
-  public b: number = 12;
-  public c: number = 15;
+  public visible: boolean = true;
+  public visibleNine: boolean = true;
+  public visibleTwelve: boolean = true;
+  public visibleFifteen: boolean = true;
+
+  public nine: number = 9;
+  public twelve: number = 12;
+  public fifteen: number = 15;
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
@@ -64,18 +54,43 @@ export class UpdateReservationModalComponent implements OnInit {
     this.dialog.open(ConfirmationMessagesComponent);
   }
 
-  test(e) {
+  public checkTime(arr: number[]): void {
+    const nine = (): boolean => {
+      if (arr.includes(this.nine)) {
+        return (this.visibleNine = false);
+      }
+    };
+    const twelve = (): boolean => {
+      if (arr.includes(this.twelve)) {
+        return (this.visibleTwelve = false);
+      }
+    };
+    const fifteen = (): boolean => {
+      if (arr.includes(this.fifteen)) {
+        return (this.visibleFifteen = false);
+      }
+    };
+    const visible = (): boolean => {
+      if (arr.length === 3) {
+        return (this.visible = false);
+      }
+    };
+    nine();
+    twelve();
+    fifteen();
+    visible();
+  }
+
+  public selectDate(): void {
     let { selectDate } = this.updateReservationForm.value;
-    let selectService = this.data.selectedService;
+    let selectService: string = this.data.selectedService;
     this.store$.dispatch(
       ReservationsActions.getSelectedDateAction({ selectDate, selectService })
     );
-    let arr = [];
-    this.reservationTime.subscribe(res => (arr = res));
+    let arr: number[] = [];
+    this.reservationTime.subscribe((res: number[]): number[] => (arr = res));
 
-    this.A(arr);
-
-    console.log(selectDate);
+    this.checkTime(arr);
   }
 
   public ngOnInit(): void {

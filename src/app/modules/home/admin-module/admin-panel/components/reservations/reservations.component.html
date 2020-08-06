@@ -1,3 +1,4 @@
+<button (click)="openAddReservationDialog()">AddReserviton</button>
 <div *ngIf="reservations$ | async">
   <div *ngFor="let reservation of reservations$ | async">
     <p>{{ reservation.email }}</p>
@@ -19,6 +20,6 @@
     >
       Update
     </button>
+    <hr />
   </div>
-  <button (click)="openAddReservationDialog()">AddReserviton</button>
 </div>
