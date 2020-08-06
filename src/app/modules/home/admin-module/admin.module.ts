@@ -4,6 +4,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialAppModule } from 'src/app/angular-material.module';
 import { LeftBarComponent } from './admin-panel/components/left-bar/left-bar.component';
+import { AdminHeaderComponent } from './admin-panel/components/admin-header/admin-header.component';
 import { RightBarComponent } from './admin-panel/components/right-bar/right-bar.component';
 import { UsersComponent } from './admin-panel/components/users/users.component';
 import { ReservationsComponent } from './admin-panel/components/reservations/reservations.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
   declarations: [
     AdminPanelComponent,
     LeftBarComponent,
+    AdminHeaderComponent,
     RightBarComponent,
     UsersComponent,
     ReservationsComponent,

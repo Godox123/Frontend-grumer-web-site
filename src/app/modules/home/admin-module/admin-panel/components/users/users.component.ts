@@ -18,6 +18,13 @@ export class UsersComponent implements OnInit {
   public users$: Observable<User[]> = this.store$.pipe(
     select(usersInformation)
   );
+  displayedColumns: string[] = [
+    'username',
+    'email',
+    'phone',
+    'creation_dt',
+    'actionDelete'
+  ];
 
   constructor(private store$: Store<UsersState>, public dialog: MatDialog) {}
 

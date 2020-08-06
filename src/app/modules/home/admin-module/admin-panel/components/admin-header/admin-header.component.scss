@@ -1,0 +1,12 @@
+@import '../../../../../../../variables';
+
+.admin-header {
+  height: 60px;
+  background: $webDarkBg;
+  color: $white;
+
+  h1 {
+    line-height: 60px;
+    text-align: center;
+  }
+}

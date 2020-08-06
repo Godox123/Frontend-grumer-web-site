@@ -1,25 +1,27 @@
-<div class="admin-bar admin-bar-body">
-  <a class="back-link" mat-button routerLink="/">
-    <mat-icon>reply</mat-icon>Вернуться на главную страницу</a
-  >
-
-  <h1 class="title-admin-panel">Панель администратора</h1>
-
-  <div class="navigation navigation-body">
-    <button routerLink="/admin" mat-raised-button color="primary">
-      Статистика
-    </button>
-
-    <button routerLink="/admin/users" mat-raised-button color="primary">
-      Пользователи
-    </button>
-
-    <button mat-raised-button routerLink="/admin/reservations" color="primary">
-      Бронирования
-    </button>
-
-    <button mat-raised-button routerLink="/admin/portfolio" color="primary">
-      Портфолио
-    </button>
-  </div>
+<div class="admin-bar">
+  <nav class="navigation navigation-body">
+    <ul>
+      <li>
+        <a routerLink="/" class="to-main-page">
+          <mat-icon>reply</mat-icon>Вернуться на главную страницу</a
+        >
+      </li>
+      <li><a routerLinkActive="active-link">Статистика</a></li>
+      <li>
+        <a routerLink="/admin/users" routerLinkActive="active-link"
+          >Пользователи</a
+        >
+      </li>
+      <li>
+        <a routerLink="/admin/reservations" routerLinkActive="active-link"
+          >Бронирования</a
+        >
+      </li>
+      <li>
+        <a routerLink="/admin/portfolio" routerLinkActive="active-link"
+          >Портфолио</a
+        >
+      </li>
+    </ul>
+  </nav>
 </div>
