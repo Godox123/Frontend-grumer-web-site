@@ -1,0 +1,23 @@
+@import '../../../../../variables';
+
+footer {
+  background: $webWhiteBg;
+
+  .footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .separator {
+    height: 1px;
+    background: $webButtonBg;
+    opacity: 0.3;
+  }
+
+  .copyright {
+    color: $webWhiteText;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px 0;
+  }
+}

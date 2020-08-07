@@ -1,0 +1,180 @@
+@import '../../../../../variables';
+
+.home-wrapper {
+  background: $webWhiteBg;
+}
+
+// Welcome block
+.welcome-block {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+
+  &__wrapper {
+    background: $webGreenBg;
+  }
+
+  .greetings {
+    padding: 30px 30px 30px 0;
+    color: $white;
+    flex: 0 1 40%;
+
+    h2 {
+      text-transform: uppercase;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    .actions,
+    button {
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .or {
+      opacity: 0.6;
+      line-height: 45px;
+    }
+
+    button {
+      background: $webButtonBg;
+      height: 45px;
+      padding: 10px 20px;
+      color: $white;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: 0.2s background-color;
+
+      &:hover {
+        background: $webButtonBgHover;
+      }
+    }
+  }
+
+  .illustration {
+    background: url(../../../../../assets/img/greetings.png) no-repeat;
+    background-size: 83%;
+    position: absolute;
+    width: 56%;
+    height: 113%;
+    right: -9%;
+    bottom: -36%;
+    z-index: 1;
+  }
+}
+
+// Services Block
+.services-block {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 0 0 0;
+
+  h2 {
+    color: $webWhiteText;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: $webButtonBg;
+      opacity: 0.3;
+    }
+
+    &:before {
+      flex: 0 1 5%;
+    }
+
+    &:after {
+      flex: 0 1 84%;
+    }
+  }
+
+  .service-items {
+    display: flex;
+    justify-content: space-between;
+
+    .item {
+      display: flex;
+      align-items: center;
+      flex-flow: column nowrap;
+      flex: 0 0 30%;
+
+      img {
+        width: 50%;
+        margin-bottom: 20px;
+      }
+
+      h3 {
+        text-transform: uppercase;
+        color: $webBlackText;
+        font-weight: bold;
+      }
+
+      p {
+        color: $webDarkBg;
+        text-align: center;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+// Care Block
+.care-block {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px 0 30px 0;
+
+  h2 {
+    color: $webWhiteText;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: $webButtonBg;
+      opacity: 0.3;
+    }
+
+    &:before {
+      flex: 0 1 5%;
+    }
+
+    &:after {
+      flex: 0 1 68%;
+    }
+  }
+
+  img {
+    width: 50%;
+    border: 1px solid $webGreenBg;
+    margin: 0 auto;
+    display: block;
+  }
+
+  p {
+    color: $webDarkBg;
+    text-align: center;
+    opacity: 0.8;
+  }
+}
