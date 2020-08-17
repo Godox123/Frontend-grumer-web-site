@@ -13,7 +13,16 @@ import { userInformation } from 'src/app/core/state/selectors/user.selectors';
 })
 export class HeaderComponent implements OnInit {
   public user$: Observable<User> = this.store$.pipe(select(userInformation));
+  public isShowMobileMenu: boolean = false;
 
   constructor(private store$: Store<UserState>) {}
   public ngOnInit(): void {}
+
+  public showMobileMenu(): void {
+    this.isShowMobileMenu = !this.isShowMobileMenu;
+  }
+
+  public closeMobileMenu(): void {
+    this.isShowMobileMenu = false;
+  }
 }

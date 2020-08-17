@@ -10,6 +10,10 @@
   max-width: 1100px;
   margin: 0 auto;
 
+  @media all and (max-width: $laptop) {
+    padding: 3px 30px;
+  }
+
   a {
     color: $white;
     text-decoration: none;
@@ -23,6 +27,12 @@
   }
 
   nav {
+    &.desktop-menu {
+      @media all and (max-width: $laptop) {
+        display: none;
+      }
+    }
+
     ul {
       display: flex;
       li {
@@ -30,8 +40,8 @@
           display: block;
           color: $white;
           text-decoration: none;
-          height: 45px;
-          line-height: 45px;
+          height: 50px;
+          line-height: 50px;
           padding: 0 20px;
           transition: 0.2s background-color;
 
@@ -43,11 +53,67 @@
       }
     }
   }
-  .burger {
+  .mobile-menu {
     display: none;
+
+    .burger {
+      border: 1px solid $webGreenBg;
+      border-radius: 4px;
+      padding: 12px;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-around;
+      width: 24px;
+      height: 24px;
+
+      span {
+        display: block;
+        height: 2px;
+        background: $webGreenBg;
+      }
+    }
+
+    .menu-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $webDarkBg;
+      z-index: 100;
+
+      ul {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+
+        a {
+          font-size: 22px;
+          height: 65px;
+          line-height: 65px;
+          text-align: center;
+        }
+      }
+    }
+
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+
+      mat-icon {
+        font-size: 50px;
+        width: 50px;
+        height: 50px;
+        color: $webGreenBg;
+      }
+    }
   }
   @media all and (max-width: $laptop) {
-    .burger {
+    .mobile-menu {
       display: block;
     }
   }
