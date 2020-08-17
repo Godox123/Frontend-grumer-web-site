@@ -2,6 +2,19 @@ import { createAction, props } from '@ngrx/store';
 import { Reservation } from 'src/app/modules/home/models/reservation.model';
 
 export const ReservationsActions = {
+  clearReservationTimeAction: createAction(
+    '[ClearReservationTimeAction] ClearReservationTimeAction'
+  ),
+  clearReservationTimeSuccessAction: createAction(
+    '[ClearReservationTimeSuccessAction] ClearReservationTimeSuccessAction',
+    props<{
+      successMessage: string;
+    }>()
+  ),
+  clearReservationTimeFailedAction: createAction(
+    '[ClearReservationTimeFailedAction] ClearReservationTimeFailedAction',
+    props<{ errMessage: Error }>()
+  ),
   getSelectedDateAction: createAction(
     '[GetSelectedDate] GetSelectedDate',
     props<{
@@ -59,6 +72,7 @@ export const ReservationsActions = {
       id: string;
       selectDate: Date;
       selectTime: number;
+      selectService: string;
     }>()
   ),
   updateReservationSuccessAction: createAction(

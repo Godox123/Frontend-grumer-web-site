@@ -23,5 +23,8 @@ export class ConfirmationMessagesComponent implements OnInit {
 
   constructor(private store$: Store<ReservationsState>) {}
 
-  ngOnInit() {}
+  public ngOnInit(): void {
+    this.failedMessage$.subscribe(res => console.log(res));
+    this.successMessage$.subscribe(res => console.log(res));
+  }
 }

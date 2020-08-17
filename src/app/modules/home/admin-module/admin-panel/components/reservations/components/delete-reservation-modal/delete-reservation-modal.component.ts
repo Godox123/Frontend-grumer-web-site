@@ -29,19 +29,3 @@ export class DeleteReservationModalComponent implements OnInit {
 
   public ngOnInit(): void {}
 }
-
-// constructor(
-//   public dialog: MatDialog,
-//   private store$: Store<UsersState>,
-//   @Inject(MAT_DIALOG_DATA) public data: { userId: string }
-// ) {}
-
-// public openDialog(): void {
-//   this.dialog.open(DeleteResponseMessagesComponent);
-// }
-
-// public removeUser(): void {
-//   const id = this.data.userId;
-//   this.store$.dispatch(UsersActions.deleteUserAction({ id }));
-//   this.openDialog();
-// }

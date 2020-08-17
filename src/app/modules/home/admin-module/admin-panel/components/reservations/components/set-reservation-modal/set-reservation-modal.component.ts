@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ReservationsActions } from 'src/app/core/state/actions/reservation.actions';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { ReservationsState } from 'src/app/core/state/reducers/reservations.reducer';
+import { Observable } from 'rxjs';
+import { reservationsTime } from 'src/app/core/state/selectors/reservation.selectors';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-set-reservation-modal',
@@ -17,12 +20,57 @@ export class SetReservationModalComponent implements OnInit {
     return d >= new Date();
   };
 
+  public reservationTime: Observable<number[]> = this.store$.pipe(
+    select(reservationsTime)
+  );
+
+  public nine: number = 9;
+  public twelve: number = 12;
+  public fifteen: number = 15;
+
+  public visibleNine: boolean = true;
+  public visibleTwelve: boolean = true;
+  public visibleFifteen: boolean = true;
+
+  public visibleReservationTime: boolean = true;
+
   constructor(
+    private dialogRef: MatDialogRef<SetReservationModalComponent>,
     private fb: FormBuilder,
     private store$: Store<ReservationsState>
   ) {}
 
-  public serReservation(): void {
+  public checkTime(arr: number[]): void {
+    const a = (): boolean => {
+      if (arr.includes(this.nine)) {
+        return (this.visibleNine = false);
+      }
+    };
+    const b = (): boolean => {
+      if (arr.includes(this.twelve)) {
+        return (this.visibleTwelve = false);
+      }
+    };
+
+    const c = (): boolean => {
+      if (arr.includes(this.fifteen)) {
+        return (this.visibleFifteen = false);
+      }
+    };
+
+    const v = (): boolean => {
+      if (arr.length > 3 || arr.length == 3) {
+        return (this.visibleReservationTime = false);
+      }
+    };
+    console.log(arr.length);
+    a();
+    b();
+    c();
+    v();
+  }
+
+  public setReservation(): void {
     const {
       email,
       username,
@@ -31,7 +79,6 @@ export class SetReservationModalComponent implements OnInit {
       selectTime,
       selectService
     } = this.setReservationForm.value;
-    console.log(selectDate);
     this.store$.dispatch(
       ReservationsActions.setReservationAction({
         email,
@@ -42,6 +89,20 @@ export class SetReservationModalComponent implements OnInit {
         selectService
       })
     );
+  }
+  public onNoClick(): void {
+    this.dialogRef.close();
+  }
+  public checkReservationDate(): void {
+    let { selectDate, selectService } = this.setReservationForm.value;
+    this.store$.dispatch(
+      ReservationsActions.getSelectedDateAction({ selectDate, selectService })
+    );
+    let arr: number[];
+    this.reservationTime.subscribe((res: number[]): number[] => {
+      return (arr = res);
+    });
+    this.checkTime(arr);
   }
 
   public ngOnInit(): void {

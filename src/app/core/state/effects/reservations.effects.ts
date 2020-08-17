@@ -17,6 +17,22 @@ export class ReservationsEffect {
     private reservationService: ReservationService
   ) {}
 
+  private clearReservationTime: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ReservationsActions.clearReservationTimeAction),
+      map(() => {
+        return ReservationsActions.clearReservationTimeSuccessAction({
+          successMessage: 'User added'
+        });
+      }),
+      catchError((errMessage: Error) => {
+        return of(
+          ReservationsActions.clearReservationTimeFailedAction({ errMessage })
+        );
+      })
+    )
+  );
+
   private getReservationHours: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(ReservationsActions.getSelectedDateAction),
@@ -50,6 +66,9 @@ export class ReservationsEffect {
         return ReservationsActions.getSelectedDateSuccessAction({
           reservationTime
         });
+      }),
+      catchError((error: Error) => {
+        return of(ReservationsActions.getSelectedDateFailedAction({ error }));
       })
     )
   );
@@ -122,11 +141,16 @@ export class ReservationsEffect {
       ofType(ReservationsActions.updateReservationAction),
       exhaustMap(action => {
         return this.reservationService
-          .updateReservation(action.id, action.selectDate, action.selectTime)
+          .updateReservation(
+            action.id,
+            action.selectDate,
+            action.selectTime,
+            action.selectService
+          )
           .pipe(
-            map((resp: Reservation[]) => {
+            map((resp: { body: Reservation[] }) => {
               return ReservationsActions.updateReservationSuccessAction({
-                reservations: resp,
+                reservations: resp.body,
                 message: 'Бронирование  изменено успешно'
               });
             }),

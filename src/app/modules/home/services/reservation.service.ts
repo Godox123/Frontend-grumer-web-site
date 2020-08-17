@@ -31,11 +31,12 @@ export class ReservationService {
   public updateReservation(
     id: string,
     selectDate: Date,
-    selectTime: number
+    selectTime: number,
+    selectService: string
   ): Observable<Object> {
     return this.http.patch(
       `${this.url}/reservations/${id}`,
-      { selectDate, selectTime },
+      { selectDate, selectTime, selectService },
       {
         observe: 'response'
       }
