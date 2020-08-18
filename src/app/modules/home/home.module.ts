@@ -14,6 +14,7 @@ import { AdminModule } from './admin-module/admin.module';
 import { CommentsService } from './services/comments.service';
 import { PortfolioCollectionService } from './services/portfolio-collection.service';
 import { ReservationService } from './services/reservation.service';
+import { NewService } from './services/new.service';
 
 const routes: Routes = [
   {
@@ -50,6 +51,11 @@ const routes: Routes = [
     MaterialAppModule,
     AdminModule
   ],
-  providers: [CommentsService, PortfolioCollectionService, ReservationService]
+  providers: [
+    CommentsService,
+    PortfolioCollectionService,
+    ReservationService,
+    NewService
+  ]
 })
 export class HomeModule {}

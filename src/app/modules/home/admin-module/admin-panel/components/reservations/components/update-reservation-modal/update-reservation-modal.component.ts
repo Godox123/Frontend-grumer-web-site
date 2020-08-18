@@ -3,12 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { ReservationsState } from 'src/app/core/state/reducers/reservations.reducer';
 import { ConfirmationMessagesComponent } from '../confirmation-messages/confirmation-messages.component';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  FormControl
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { reservationsTime } from 'src/app/core/state/selectors/reservation.selectors';
 import { ReservationsActions } from 'src/app/core/state/actions/reservation.actions';
