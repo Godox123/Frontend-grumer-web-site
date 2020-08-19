@@ -7,17 +7,24 @@ import {
   ReservationsState,
   reservationsReducer
 } from './reservations.reducer';
+import {
+  ServicesKey,
+  ServicesState,
+  servicesReducer
+} from './services.reducer';
 
 export interface State {
   [AuthKey]: UserState;
   [UsersKey]: UsersState;
   [ReservationsKey]: ReservationsState;
+  [ServicesKey]: ServicesState;
 }
 
 export const reducers: ActionReducerMap<State> = {
   [AuthKey]: authReducer,
   [UsersKey]: usersReducer,
-  [ReservationsKey]: reservationsReducer
+  [ReservationsKey]: reservationsReducer,
+  [ServicesKey]: servicesReducer
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
