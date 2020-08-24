@@ -18,6 +18,7 @@ import { UpdateReservationModalComponent } from './admin-panel/components/reserv
 import { SetReservationModalComponent } from './admin-panel/components/reservations/components/set-reservation-modal/set-reservation-modal.component';
 import { ConfirmationMessagesComponent } from './admin-panel/components/reservations/components/confirmation-messages/confirmation-messages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ServicesComponent } from './admin-panel/components/services/services.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
       { path: '', component: RightBarComponent },
       { path: 'users', component: UsersComponent },
       { path: 'reservations', component: ReservationsComponent },
-      { path: 'portfolio', component: SetPortfolioComponent }
+      { path: 'portfolio', component: SetPortfolioComponent },
+      { path: 'services', component: ServicesComponent }
     ]
   }
 ];
@@ -46,7 +48,8 @@ const routes: Routes = [
     DeleteReservationModalComponent,
     UpdateReservationModalComponent,
     SetReservationModalComponent,
-    ConfirmationMessagesComponent
+    ConfirmationMessagesComponent,
+    ServicesComponent
   ],
   entryComponents: [
     UserDeleteConfirmationComponent,

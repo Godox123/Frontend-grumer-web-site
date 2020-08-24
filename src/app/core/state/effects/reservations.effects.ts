@@ -80,7 +80,6 @@ export class ReservationsEffect {
         return this.reservationService.getReservations().pipe(
           map((resp: { body: Reservation[] }) => {
             let reservations = resp.body;
-            console.log(reservations);
             return ReservationsActions.getReservationsSuccessAction({
               reservations
             });

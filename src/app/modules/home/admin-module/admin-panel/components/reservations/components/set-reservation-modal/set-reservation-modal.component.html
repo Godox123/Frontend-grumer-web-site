@@ -38,10 +38,14 @@
         <mat-select
           placeholder="Выберите сервис"
           formControlName="selectService"
-        >
-          <mat-option value="service1">Service1</mat-option>
-          <mat-option value="service2">Service2</mat-option>
-          <mat-option value="service3">Service3</mat-option>
+          ><div
+            class="serviceNameContainer"
+            *ngFor="let service of services$ | async"
+          >
+            <mat-option value="{{ service.servicename }}">{{
+              service.servicename
+            }}</mat-option>
+          </div>
         </mat-select>
       </mat-form-field>
       <!-- пока сервис не выбран скрывать поле с датой -->

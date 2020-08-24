@@ -6,6 +6,9 @@ import { ReservationsState } from 'src/app/core/state/reducers/reservations.redu
 import { Observable } from 'rxjs';
 import { reservationsTime } from 'src/app/core/state/selectors/reservation.selectors';
 import { MatDialogRef } from '@angular/material';
+import { ServicesState } from 'src/app/core/state/reducers/services.reducer';
+import { Service } from 'src/app/modules/home/models/service.model';
+import { services } from 'src/app/core/state/selectors/services.selectors';
 
 @Component({
   selector: 'app-set-reservation-modal',
@@ -14,6 +17,10 @@ import { MatDialogRef } from '@angular/material';
 })
 export class SetReservationModalComponent implements OnInit {
   public setReservationForm: FormGroup;
+
+  public services$: Observable<Service[]> = this.storeServices$.pipe(
+    select(services)
+  );
 
   public myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
@@ -35,6 +42,8 @@ export class SetReservationModalComponent implements OnInit {
   public visibleReservationTime: boolean = true;
 
   constructor(
+    private storeServices$: Store<ServicesState>,
+
     private dialogRef: MatDialogRef<SetReservationModalComponent>,
     private fb: FormBuilder,
     private store$: Store<ReservationsState>

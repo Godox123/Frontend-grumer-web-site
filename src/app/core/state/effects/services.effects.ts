@@ -8,7 +8,7 @@ import { ServicesActions } from '../actions/services.actions';
 import { Service } from 'src/app/modules/home/models/service.model';
 
 @Injectable()
-export class ServicesEffects {
+export class ServicesEffect {
   constructor(private actions$: Actions, private newService: NewService) {}
 
   private getServices: Observable<Action> = createEffect(() =>

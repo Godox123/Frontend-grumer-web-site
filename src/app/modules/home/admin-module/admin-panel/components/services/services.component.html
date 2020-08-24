@@ -1,0 +1,8 @@
+<button class="add-service">Create new Service</button>
+<div class="services" *ngIf="services$ | async">
+  <div class="services__list" *ngFor="let service of services$ | async">
+    <p class="services__servicename">{{ service.servicename }}</p>
+    <img class="services__img" src="{{ service.photoUrl }}" />
+    <p class="services__description">{{ service.description }}</p>
+  </div>
+</div>

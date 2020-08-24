@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material';
 import { DeleteReservationModalComponent } from './components/delete-reservation-modal/delete-reservation-modal.component';
 import { UpdateReservationModalComponent } from './components/update-reservation-modal/update-reservation-modal.component';
 import { SetReservationModalComponent } from './components/set-reservation-modal/set-reservation-modal.component';
+import { ServicesState } from 'src/app/core/state/reducers/services.reducer';
+import { ServicesActions } from 'src/app/core/state/actions/services.actions';
 
 @Component({
   selector: 'app-reservations',
@@ -21,6 +23,7 @@ export class ReservationsComponent implements OnInit {
   );
 
   constructor(
+    private storeServices$: Store<ServicesState>,
     private store$: Store<ReservationsState>,
     public dialog: MatDialog
   ) {}
@@ -57,5 +60,6 @@ export class ReservationsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store$.dispatch(ReservationsActions.getReservationsAction());
+    this.storeServices$.dispatch(ServicesActions.getServicesAction());
   }
 }
