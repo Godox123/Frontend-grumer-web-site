@@ -1,90 +1,90 @@
 @import '../../../../_variables.scss';
 
 .login-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-image: url(https://firebasestorage.googleapis.com/v0/b/dogswebsite-ae5d3.appspot.com/o/9064.jpg?alt=media&token=733019b7-f37d-42cf-9af3-6e126643b112);
-  background-position: top center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  .return-home {
-    font-family: Comic Sans MS, Comic Sans, cursive;
-    font-size: 2.5vh;
-    margin: 5px;
-    color: $white;
-    text-decoration: none;
-    background: $black;
-    padding: 3px 8px;
-    border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-image: url(../../../../assets/img/9064.jpg);
+	background-position: top center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	.return-home {
+		font-family: Comic Sans MS, Comic Sans, cursive;
+		font-size: 2.5vh;
+		margin: 5px;
+		color: $white;
+		text-decoration: none;
+		background: $black;
+		padding: 3px 8px;
+		border-radius: 5px;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    border: 2px solid black;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.6);
-    .error-message {
-      border: 1px solid $red;
-      border-radius: 5px;
-      background: $errorBg;
-      margin-bottom: 20px;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.form-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 30px;
+		border: 2px solid black;
+		border-radius: 10px;
+		background: rgba(255, 255, 255, 0.6);
+		.error-message {
+			border: 1px solid $red;
+			border-radius: 5px;
+			background: $errorBg;
+			margin-bottom: 20px;
 
-      p {
-        margin: 5%;
-        color: $red;
-      }
-    }
-    form {
-      mat-form-field {
-        width: 100%;
+			p {
+				margin: 5%;
+				color: $red;
+			}
+		}
+		form {
+			mat-form-field {
+				width: 100%;
 
-        mat-error {
-          font-size: 12px;
-        }
-      }
-      .login-controls {
-        display: flex;
-        flex-flow: column nowrap;
+				mat-error {
+					font-size: 12px;
+				}
+			}
+			.login-controls {
+				display: flex;
+				flex-flow: column nowrap;
 
-        .control-buttons {
-          display: flex;
-          justify-content: space-between;
-        }
+				.control-buttons {
+					display: flex;
+					justify-content: space-between;
+				}
 
-        .forgot {
-          text-align: end;
-        }
-      }
-    }
-  }
+				.forgot {
+					text-align: end;
+				}
+			}
+		}
+	}
 
-  mat-icon {
-    cursor: pointer;
-  }
+	mat-icon {
+		cursor: pointer;
+	}
 }
 
 @media (max-height: 450px) {
-  .login-container {
-    background-color: black;
-    background-size: 90ch 100vh;
-  }
+	.login-container {
+		background-color: black;
+		background-size: 90ch 100vh;
+	}
 }
 
 .example-container .mat-form-field + .mat-form-field {
-  margin-left: 8px;
+	margin-left: 8px;
 }
 
 input.example-right-align::-webkit-outer-spin-button,
 input.example-right-align::-webkit-inner-spin-button {
-  display: none;
+	display: none;
 }

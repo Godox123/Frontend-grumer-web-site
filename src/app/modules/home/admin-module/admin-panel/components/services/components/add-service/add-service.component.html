@@ -1,0 +1,51 @@
+<div class="set-service-container">
+  <form
+    class="set-service-form"
+    novalidate
+    [formGroup]="setServiceForm"
+    (ngSubmit)="setService()"
+  >
+    <div class="content">
+      <mat-form-field class="set-service__input-servicename">
+        <input
+          formControlName="servicename"
+          matInput
+          placeholder="Введите
+        название сервиса"
+        />
+        <mat-error
+          *ngIf="setServiceForm.get('servicename').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="set-service__input-photoUrl">
+        <input
+          formControlName="photoUrl"
+          matInput
+          placeholder="Выберите картинку"
+        />
+        <mat-error *ngIf="setServiceForm.get('photoUrl').hasError('required')">
+          Поле не может быть пустым
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="set-service__input-description">
+        <input
+          formControlName="description"
+          matInput
+          placeholder="Введите описание услуги"
+        />
+        <mat-error
+          *ngIf="setServiceForm.get('description').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error>
+      </mat-form-field>
+      <img class="test" [src]="imgsrc" />
+      <input (change)="test($event.target.files)" type="file" />
+    </div>
+    <button type="submit" mat-button class="set-service__submit-button">
+      Добавить сервис
+    </button>
+  </form>
+</div>

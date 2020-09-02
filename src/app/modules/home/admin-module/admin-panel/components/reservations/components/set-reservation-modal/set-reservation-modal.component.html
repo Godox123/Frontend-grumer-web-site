@@ -42,14 +42,19 @@
             class="serviceNameContainer"
             *ngFor="let service of services$ | async"
           >
-            <mat-option value="{{ service.servicename }}">{{
-              service.servicename
-            }}</mat-option>
+            <mat-option
+              (click)="selectedServiceCheckMethod()"
+              value="{{ service.servicename }}"
+              >{{ service.servicename }}</mat-option
+            >
           </div>
         </mat-select>
       </mat-form-field>
       <!-- пока сервис не выбран скрывать поле с датой -->
-      <mat-form-field class="content__input-selectDate">
+      <mat-form-field
+        *ngIf="selectedServiceCheck"
+        class="content__input-selectDate"
+      >
         <mat-label>Выберите дату</mat-label>
         <input
           formControlName="selectDate"

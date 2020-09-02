@@ -21,9 +21,7 @@ export class ReservationsEffect {
     this.actions$.pipe(
       ofType(ReservationsActions.clearReservationTimeAction),
       map(() => {
-        return ReservationsActions.clearReservationTimeSuccessAction({
-          successMessage: 'User added'
-        });
+        return ReservationsActions.clearReservationTimeSuccessAction();
       }),
       catchError((errMessage: Error) => {
         return of(
@@ -169,6 +167,7 @@ export class ReservationsEffect {
       exhaustMap(action => {
         return this.reservationService.deleteReservation(action.id).pipe(
           map((resp: { body: Reservation[] }) => {
+            console.log(resp.body);
             return ReservationsActions.deleteReservationSuccessAction({
               reservations: resp.body,
               message: 'Бронирование удалено успешно'

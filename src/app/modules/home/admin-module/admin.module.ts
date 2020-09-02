@@ -19,6 +19,10 @@ import { SetReservationModalComponent } from './admin-panel/components/reservati
 import { ConfirmationMessagesComponent } from './admin-panel/components/reservations/components/confirmation-messages/confirmation-messages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ServicesComponent } from './admin-panel/components/services/services.component';
+import { DeleteServiceComponent } from './admin-panel/components/services/components/delete-service/delete-service.component';
+import { UpdateServiceComponent } from './admin-panel/components/services/components/update-service/update-service.component';
+import { AddServiceComponent } from './admin-panel/components/services/components/add-service/add-service.component';
+import { ConfirmServiceModalComponent } from './admin-panel/components/services/components/confirm-service-modal/confirm-service-modal.component';
 
 const routes: Routes = [
   {
@@ -49,7 +53,11 @@ const routes: Routes = [
     UpdateReservationModalComponent,
     SetReservationModalComponent,
     ConfirmationMessagesComponent,
-    ServicesComponent
+    ServicesComponent,
+    DeleteServiceComponent,
+    UpdateServiceComponent,
+    AddServiceComponent,
+    ConfirmServiceModalComponent
   ],
   entryComponents: [
     UserDeleteConfirmationComponent,
@@ -57,7 +65,11 @@ const routes: Routes = [
     DeleteReservationModalComponent,
     UpdateReservationModalComponent,
     SetReservationModalComponent,
-    ConfirmationMessagesComponent
+    ConfirmationMessagesComponent,
+    DeleteServiceComponent,
+    UpdateServiceComponent,
+    AddServiceComponent,
+    ConfirmServiceModalComponent
   ],
   imports: [
     CommonModule,

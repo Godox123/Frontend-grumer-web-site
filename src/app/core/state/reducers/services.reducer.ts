@@ -36,7 +36,7 @@ const _servicesReducer = createReducer(
   })),
   on(ServicesActions.updateServiceSuccessAction, (state, response) => ({
     ...state,
-    services: response.successMessage,
+    services: response.services,
     successMessage: response.successMessage
   })),
   on(ServicesActions.updateServiceFailedAction, (state, response) => ({
@@ -45,6 +45,7 @@ const _servicesReducer = createReducer(
   })),
   on(ServicesActions.deleteServiceSuccessAction, (state, response) => ({
     ...state,
+    services: response.services,
     successMessage: response.successMessage
   })),
   on(ServicesActions.deleteServiceFailedAction, (state, response) => ({

@@ -5,10 +5,11 @@ import { Store, select } from '@ngrx/store';
 import { ReservationsState } from 'src/app/core/state/reducers/reservations.reducer';
 import { Observable } from 'rxjs';
 import { reservationsTime } from 'src/app/core/state/selectors/reservation.selectors';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { ServicesState } from 'src/app/core/state/reducers/services.reducer';
 import { Service } from 'src/app/modules/home/models/service.model';
 import { services } from 'src/app/core/state/selectors/services.selectors';
+import { ConfirmationMessagesComponent } from '../confirmation-messages/confirmation-messages.component';
 
 @Component({
   selector: 'app-set-reservation-modal',
@@ -21,6 +22,8 @@ export class SetReservationModalComponent implements OnInit {
   public services$: Observable<Service[]> = this.storeServices$.pipe(
     select(services)
   );
+
+  public selectedServiceCheck: boolean = false;
 
   public myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
@@ -43,11 +46,16 @@ export class SetReservationModalComponent implements OnInit {
 
   constructor(
     private storeServices$: Store<ServicesState>,
-
+    public dialog: MatDialog,
     private dialogRef: MatDialogRef<SetReservationModalComponent>,
     private fb: FormBuilder,
     private store$: Store<ReservationsState>
   ) {}
+
+  public selectedServiceCheckMethod(): void {
+    console.log(this.selectedServiceCheck);
+    this.selectedServiceCheck = true;
+  }
 
   public checkTime(arr: number[]): void {
     const a = (): boolean => {
@@ -79,6 +87,10 @@ export class SetReservationModalComponent implements OnInit {
     v();
   }
 
+  public openDialog(): void {
+    this.dialog.open(ConfirmationMessagesComponent);
+  }
+
   public setReservation(): void {
     const {
       email,
@@ -98,8 +110,10 @@ export class SetReservationModalComponent implements OnInit {
         selectService
       })
     );
+    this.openDialog();
   }
   public onNoClick(): void {
+    this.selectedServiceCheck = false;
     this.dialogRef.close();
   }
   public checkReservationDate(): void {

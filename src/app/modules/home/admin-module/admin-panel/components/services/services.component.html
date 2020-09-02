@@ -1,8 +1,22 @@
-<button class="add-service">Create new Service</button>
+<button class="add-service" (click)="openAddReservationDialog()">
+  Create new Service
+</button>
 <div class="services" *ngIf="services$ | async">
   <div class="services__list" *ngFor="let service of services$ | async">
     <p class="services__servicename">{{ service.servicename }}</p>
     <img class="services__img" src="{{ service.photoUrl }}" />
     <p class="services__description">{{ service.description }}</p>
+    <button
+      class="services__update-button"
+      (click)="openUpdateDialog(service._id)"
+    >
+      Update
+    </button>
+    <button
+      class="services__delete-button"
+      (click)="openDeleteDialog(service._id)"
+    >
+      Delete
+    </button>
   </div>
 </div>

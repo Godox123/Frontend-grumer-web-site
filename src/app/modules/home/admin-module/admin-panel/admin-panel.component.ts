@@ -4,6 +4,7 @@ import { UserState } from 'src/app/core/state/reducers/auth.reducer';
 import { authActions } from 'src/app/core/state/actions/auth.actions';
 import { UsersActions } from 'src/app/core/state/actions/users.actions';
 import { UsersState } from 'src/app/core/state/reducers/users.reducer';
+import { NewService } from '../../services/new.service';
 
 @Component({
   selector: 'app-admin-panel',

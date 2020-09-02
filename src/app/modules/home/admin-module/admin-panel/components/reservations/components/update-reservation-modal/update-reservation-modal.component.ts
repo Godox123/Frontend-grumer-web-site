@@ -16,6 +16,8 @@ import { ReservationsActions } from 'src/app/core/state/actions/reservation.acti
 export class UpdateReservationModalComponent implements OnInit {
   public updateReservationForm: FormGroup;
 
+  public selectedServiceCheck: boolean = false;
+
   public myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     return d >= new Date();
@@ -80,6 +82,7 @@ export class UpdateReservationModalComponent implements OnInit {
   }
 
   public onNoClick(): void {
+    this.selectedServiceCheck = false;
     this.dialogRef.close();
   }
   public updateReservation(): void {
@@ -109,6 +112,11 @@ export class UpdateReservationModalComponent implements OnInit {
       return (arr = res);
     });
     this.checkTime(arr);
+  }
+
+  public selectedServiceCheckMethod(): void {
+    console.log(this.selectedServiceCheck);
+    this.selectedServiceCheck = true;
   }
 
   public ngOnInit(): void {

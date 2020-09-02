@@ -86,6 +86,7 @@ export class ServicesEffect {
           map((resp: { body: Service[] }) => {
             let services = resp.body;
             return ServicesActions.deleteServiceSuccessAction({
+              services,
               successMessage: 'Удалено успешно'
             });
           })

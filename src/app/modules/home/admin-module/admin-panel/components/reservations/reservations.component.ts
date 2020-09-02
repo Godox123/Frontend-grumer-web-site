@@ -35,12 +35,7 @@ export class ReservationsComponent implements OnInit {
       }
     });
   }
-  public openUpdateDialog(
-    id: string,
-    service: string,
-    date: Date,
-    time: number
-  ): void {
+  public openUpdateDialog(id: string, service: string): void {
     const dialogRef = this.dialog.open(UpdateReservationModalComponent, {
       data: {
         userId: id,

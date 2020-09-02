@@ -66,6 +66,7 @@ export const ServicesActions = {
     '[DeleteServiceSuccessAction] DeleteServiceSuccessAction',
     props<{
       successMessage: string;
+      services: Service[];
     }>()
   ),
   deleteServiceFailedAction: createAction(

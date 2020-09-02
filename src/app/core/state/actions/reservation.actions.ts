@@ -6,10 +6,7 @@ export const ReservationsActions = {
     '[ClearReservationTimeAction] ClearReservationTimeAction'
   ),
   clearReservationTimeSuccessAction: createAction(
-    '[ClearReservationTimeSuccessAction] ClearReservationTimeSuccessAction',
-    props<{
-      successMessage: string;
-    }>()
+    '[ClearReservationTimeSuccessAction] ClearReservationTimeSuccessAction'
   ),
   clearReservationTimeFailedAction: createAction(
     '[ClearReservationTimeFailedAction] ClearReservationTimeFailedAction',

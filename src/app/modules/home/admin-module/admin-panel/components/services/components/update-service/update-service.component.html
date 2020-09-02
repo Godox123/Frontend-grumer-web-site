@@ -1,0 +1,51 @@
+<div class="update-service-container">
+  <form
+    class="update-service-form"
+    novalidate
+    [formGroup]="updateServiceForm"
+    (ngSubmit)="updateService()"
+  >
+    <div class="content">
+      <mat-form-field class="update-service__input-servicename">
+        <input
+          formControlName="servicename"
+          matInput
+          placeholder="Введите
+          название сервиса"
+        />
+        <!-- <mat-error
+          *ngIf="updateServiceForm.get('servicename').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error> -->
+      </mat-form-field>
+      <mat-form-field class="update-service__input-photoUrl">
+        <input
+          formControlName="photoUrl"
+          matInput
+          placeholder="Выберите картинку"
+        />
+        <!-- <mat-error
+          *ngIf="updateServiceForm.get('photoUrl').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error> -->
+      </mat-form-field>
+      <mat-form-field class="update-service__input-description">
+        <input
+          formControlName="description"
+          matInput
+          placeholder="Введите описание услуги"
+        />
+        <!-- <mat-error
+          *ngIf="updateServiceForm.get('description').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error> -->
+      </mat-form-field>
+    </div>
+    <button type="submit" mat-button class="update-service__submit-button">
+      update сервис
+    </button>
+  </form>
+</div>
