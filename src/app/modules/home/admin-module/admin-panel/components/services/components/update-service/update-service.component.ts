@@ -14,6 +14,11 @@ import { ConfirmServiceModalComponent } from '../confirm-service-modal/confirm-s
 })
 export class UpdateServiceComponent implements OnInit {
   public updateServiceForm: FormGroup;
+
+  public imgsrc: File = this.data.photoUrl;
+
+  private fileToUpload: File = null;
+
   constructor(
     private store$: Store<ServicesState>,
     private dialogRef: MatDialogRef<UpdateServiceComponent>,
@@ -22,6 +27,10 @@ export class UpdateServiceComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       userId: string;
+      servicename: string;
+      description: string;
+      price: string;
+      photoUrl: File;
     }
   ) {}
 
@@ -29,7 +38,12 @@ export class UpdateServiceComponent implements OnInit {
     this.dialog.open(ConfirmServiceModalComponent);
   }
   public updateService(): void {
-    let { servicename, photoUrl, description } = this.updateServiceForm.value;
+    let {
+      servicename,
+      photoUrl,
+      price,
+      description
+    } = this.updateServiceForm.value;
     const id: string = this.data.userId;
 
     this.store$.dispatch(
@@ -37,18 +51,32 @@ export class UpdateServiceComponent implements OnInit {
         id,
         servicename,
         photoUrl,
+        price,
         description
       })
     );
     this.openDialog();
   }
 
+  public selectImg(file: File): void {
+    this.fileToUpload = file[0];
+    this.updateServiceForm.patchValue({
+      photoUrl: file[0]
+    });
+    this.updateServiceForm.get('photoUrl').updateValueAndValidity();
+    let reader = new FileReader();
+    reader.onload = (event: any): void => {
+      this.imgsrc = event.target.result;
+    };
+    reader.readAsDataURL(this.fileToUpload);
+  }
+
   public ngOnInit(): void {
-    console.log(this.data.userId);
     this.updateServiceForm = this.fb.group({
-      servicename: [null],
-      photoUrl: [null],
-      description: [null]
+      servicename: [this.data.servicename, [Validators.required]],
+      photoUrl: [this.data.photoUrl],
+      price: [this.data.price, [Validators.required]],
+      description: [this.data.description, [Validators.required]]
     });
   }
 }

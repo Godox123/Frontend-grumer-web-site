@@ -54,13 +54,11 @@ export class ReservationsEffect {
               new Date(data.selectDate).getDate() &&
             element.selectService === data.selectService
           ) {
-            console.log('work');
             reservationTime.push(element.selectTime);
           } else {
             console.log('else');
           }
         });
-        console.log(reservationTime);
         return ReservationsActions.getSelectedDateSuccessAction({
           reservationTime
         });
@@ -104,6 +102,7 @@ export class ReservationsEffect {
           selectDate: Date;
           selectTime: number;
           selectService: string;
+          photoUrl: string;
         }) => {
           return this.reservationService
             .setReservation(
@@ -112,7 +111,8 @@ export class ReservationsEffect {
               action.phone,
               action.selectDate,
               action.selectTime,
-              action.selectService
+              action.selectService,
+              action.photoUrl
             )
             .pipe(
               map((resp: { body: Reservation[] }) => {

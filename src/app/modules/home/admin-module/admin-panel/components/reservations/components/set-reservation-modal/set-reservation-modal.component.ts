@@ -98,7 +98,8 @@ export class SetReservationModalComponent implements OnInit {
       phone,
       selectDate,
       selectTime,
-      selectService
+      selectService,
+      photoUrl
     } = this.setReservationForm.value;
     this.store$.dispatch(
       ReservationsActions.setReservationAction({
@@ -107,7 +108,8 @@ export class SetReservationModalComponent implements OnInit {
         phone,
         selectDate,
         selectTime,
-        selectService
+        selectService,
+        photoUrl
       })
     );
     this.openDialog();

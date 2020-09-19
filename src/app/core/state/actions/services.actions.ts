@@ -17,7 +17,8 @@ export const ServicesActions = {
     '[SetServiceAction] SetServiceAction',
     props<{
       servicename: string;
-      photoUrl: string;
+      photoUrl: File;
+      price: string;
       description: string;
     }>()
   ),
@@ -39,7 +40,8 @@ export const ServicesActions = {
     props<{
       id: string;
       servicename: string;
-      photoUrl: string;
+      photoUrl: File;
+      price: string;
       description: string;
     }>()
   ),

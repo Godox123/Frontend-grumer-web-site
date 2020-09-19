@@ -31,7 +31,6 @@ export class ServicesComponent implements OnInit {
   }
 
   public openDeleteDialog(id: string): void {
-    console.log(id);
     this.dialog.open(DeleteServiceComponent, {
       data: {
         userId: id
@@ -39,16 +38,25 @@ export class ServicesComponent implements OnInit {
     });
   }
 
-  public openUpdateDialog(id: string, service: string): void {
+  public openUpdateDialog(
+    id: string,
+    servicename: string,
+    price: string,
+    description: string,
+    photoUrl: File
+  ): void {
     const dialogRef = this.dialog.open(UpdateServiceComponent, {
       data: {
-        userId: id
+        userId: id,
+        servicename,
+        description,
+        price,
+        photoUrl
       }
     });
   }
 
   public ngOnInit(): void {
     this.storeServices$.dispatch(ServicesActions.getServicesAction());
-    this.services$.subscribe(res => console.log(res));
   }
 }

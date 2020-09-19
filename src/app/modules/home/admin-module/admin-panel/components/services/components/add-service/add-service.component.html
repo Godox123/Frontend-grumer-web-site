@@ -2,6 +2,7 @@
   <form
     class="set-service-form"
     novalidate
+    enctype="multipart/form-data"
     [formGroup]="setServiceForm"
     (ngSubmit)="setService()"
   >
@@ -19,16 +20,6 @@
           Поле не может быть пустым
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="set-service__input-photoUrl">
-        <input
-          formControlName="photoUrl"
-          matInput
-          placeholder="Выберите картинку"
-        />
-        <mat-error *ngIf="setServiceForm.get('photoUrl').hasError('required')">
-          Поле не может быть пустым
-        </mat-error>
-      </mat-form-field>
       <mat-form-field class="set-service__input-description">
         <input
           formControlName="description"
@@ -41,8 +32,18 @@
           Поле не может быть пустым
         </mat-error>
       </mat-form-field>
-      <img class="test" [src]="imgsrc" />
-      <input (change)="test($event.target.files)" type="file" />
+      <mat-form-field class="set-service__input-price">
+        <input
+          formControlName="price"
+          matInput
+          placeholder="Введите цену услуги"
+        />
+        <mat-error *ngIf="setServiceForm.get('price').hasError('required')">
+          Поле не может быть пустым
+        </mat-error>
+      </mat-form-field>
+      <img class="selectImg" [src]="imgsrc" />
+      <input (change)="selectImg($event.target.files)" type="file" />
     </div>
     <button type="submit" mat-button class="set-service__submit-button">
       Добавить сервис

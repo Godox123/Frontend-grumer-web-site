@@ -6,9 +6,18 @@
     <p class="services__servicename">{{ service.servicename }}</p>
     <img class="services__img" src="{{ service.photoUrl }}" />
     <p class="services__description">{{ service.description }}</p>
+    <p class="services__price">{{ service.price }}</p>
     <button
       class="services__update-button"
-      (click)="openUpdateDialog(service._id)"
+      (click)="
+        openUpdateDialog(
+          service._id,
+          service.servicename,
+          service.price,
+          service.description,
+          service.photoUrl
+        )
+      "
     >
       Update
     </button>

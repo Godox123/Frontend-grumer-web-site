@@ -1,4 +1,9 @@
 .services__img {
-	width: 40vw;
-	height: 20vh;
+  width: 185px;
+  height: 25vh;
+}
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }

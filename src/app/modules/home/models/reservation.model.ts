@@ -5,6 +5,8 @@ export interface Reservation {
   selectDate: Date;
   selectTime: number;
   phone: number;
+  price: number;
   selectService: String;
+  photoUrl: string;
   creation_dt: Date;
 }

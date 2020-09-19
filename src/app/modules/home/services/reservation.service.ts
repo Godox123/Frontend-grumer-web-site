@@ -19,11 +19,20 @@ export class ReservationService {
     phone: number,
     selectDate: Date,
     selectTime: number,
-    selectService: string
+    selectService: string,
+    photoUrl: string
   ): Observable<Object> {
     return this.http.post(
       `${this.url}/reservations`,
-      { email, username, phone, selectDate, selectTime, selectService },
+      {
+        email,
+        username,
+        phone,
+        selectDate,
+        selectTime,
+        selectService,
+        photoUrl
+      },
       { observe: 'response' }
     );
   }

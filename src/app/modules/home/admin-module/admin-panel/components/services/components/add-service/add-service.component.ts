@@ -13,6 +13,11 @@ import { ServicesActions } from 'src/app/core/state/actions/services.actions';
 })
 export class AddServiceComponent implements OnInit {
   public setServiceForm: FormGroup;
+
+  public imgsrc: string | ArrayBuffer;
+
+  private fileToUpload: File = null;
+
   constructor(
     private storeServices$: Store<ServicesState>,
     private dialog: MatDialog,
@@ -23,28 +28,38 @@ export class AddServiceComponent implements OnInit {
   public openDialog(): void {
     this.dialog.open(ConfirmServiceModalComponent);
   }
-  fileToUpload: File = null;
-  imgsrc;
-  test(file: FileList) {
-    this.fileToUpload = file.item(0);
+
+  public selectImg(file: File): void {
+    this.fileToUpload = file[0];
+    this.setServiceForm.patchValue({
+      photoUrl: file[0]
+    });
+    this.setServiceForm.get('photoUrl').updateValueAndValidity();
     let reader = new FileReader();
-    reader.onload = (event): void => {
+    reader.onload = (event: any): void => {
       this.imgsrc = event.target.result;
     };
     reader.readAsDataURL(this.fileToUpload);
   }
 
   public setService(): void {
-    const { servicename, photoUrl, description } = this.setServiceForm.value;
+    let {
+      servicename,
+      photoUrl,
+      price,
+      description
+    } = this.setServiceForm.value;
     this.storeServices$.dispatch(
       ServicesActions.setServiceAction({
         servicename,
         photoUrl,
+        price,
         description
       })
     );
     this.openDialog();
   }
+
   public onNoClick(): void {
     this.dialogRef.close();
   }
@@ -52,7 +67,8 @@ export class AddServiceComponent implements OnInit {
   public ngOnInit(): void {
     this.setServiceForm = this.fb.group({
       servicename: [null, [Validators.required]],
-      photoUrl: [null, [Validators.required]],
+      photoUrl: [null],
+      price: [null, [Validators.required]],
       description: [null, [Validators.required]]
     });
   }

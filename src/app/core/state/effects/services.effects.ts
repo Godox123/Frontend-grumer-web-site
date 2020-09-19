@@ -32,12 +32,17 @@ export class ServicesEffect {
     this.actions$.pipe(
       ofType(ServicesActions.setServiceAction),
       exhaustMap(action => {
+        console.log(action);
         return this.newService
-          .setService(action.servicename, action.photoUrl, action.description)
+          .setService(
+            action.servicename,
+            action.photoUrl,
+            action.price,
+            action.description
+          )
           .pipe(
             map((resp: { body: Service[] }) => {
               let services = resp.body;
-
               return ServicesActions.setServiceSuccessAction({
                 services,
                 successMessage: 'Новый сервис успешно добавлен'
@@ -60,6 +65,7 @@ export class ServicesEffect {
             action.id,
             action.servicename,
             action.photoUrl,
+            action.price,
             action.description
           )
           .pipe(

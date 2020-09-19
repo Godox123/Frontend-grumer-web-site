@@ -94,6 +94,7 @@ export const ReservationsActions = {
       selectDate: Date;
       selectTime: number;
       selectService: string;
+      photoUrl: string;
     }>()
   ),
   setReservationSuccessAction: createAction(
