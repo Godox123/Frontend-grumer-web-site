@@ -52,8 +52,8 @@ export class SetReservationModalComponent implements OnInit {
     private store$: Store<ReservationsState>
   ) {}
 
-  public selectedServiceCheckMethod(): void {
-    console.log(this.selectedServiceCheck);
+  public selectedServiceCheckMethod(service: Service): void {
+    this.setReservationForm.patchValue({ price: service.price });
     this.selectedServiceCheck = true;
   }
 
@@ -98,6 +98,7 @@ export class SetReservationModalComponent implements OnInit {
       phone,
       selectDate,
       selectTime,
+      price,
       selectService,
       photoUrl
     } = this.setReservationForm.value;
@@ -106,6 +107,7 @@ export class SetReservationModalComponent implements OnInit {
         email,
         username,
         phone,
+        price,
         selectDate,
         selectTime,
         selectService,
@@ -135,6 +137,7 @@ export class SetReservationModalComponent implements OnInit {
       email: [null, [Validators.email]],
       username: [null, [Validators.required]],
       phone: [null, [Validators.required, Validators.pattern('[0-9]{9}')]],
+      price: null,
       selectDate: [null, [Validators.required]],
       selectTime: [null, [Validators.required]],
       selectService: [null, [Validators.required]]

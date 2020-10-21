@@ -1,1 +1,42 @@
-<p>set-portfolio works!</p>
+<div class="portfolio">
+  <button class="portfolio__add-portfolio" (click)="openAddPortfolioDialog()">
+    Add portfolio
+  </button>
+  <div class="portfolio__element-container" *ngIf="portfolio$ | async">
+    <div
+      class="portfolio__element"
+      *ngFor="let portfolio of portfolio$ | async"
+    >
+      <img
+        class="portfolio__imageBefore"
+        [src]="portfolio.photoUrlBefore"
+        alt="Фото до работы"
+      />
+      <img
+        class="portfolio__imageAfter"
+        [src]="portfolio.photoUrlAfter"
+        alt="Фото после работы"
+      />
+      <p class="portfolio__description">{{ portfolio.description }}</p>
+      <button
+        class="portfolio__delete-button"
+        (click)="openDeleteDialog(portfolio._id)"
+      >
+        Delete
+      </button>
+      <button
+        class="portfolio__update-button"
+        (click)="
+          openUpdateDialog(
+            portfolio._id,
+            portfolio.description,
+            portfolio.photoUrlBefore,
+            portfolio.photoUrlAfter
+          )
+        "
+      >
+        Update
+      </button>
+    </div>
+  </div>
+</div>

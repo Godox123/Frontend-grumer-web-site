@@ -101,6 +101,7 @@ export class ReservationsEffect {
           phone: number;
           selectDate: Date;
           selectTime: number;
+          price: string;
           selectService: string;
           photoUrl: string;
         }) => {
@@ -111,6 +112,7 @@ export class ReservationsEffect {
               action.phone,
               action.selectDate,
               action.selectTime,
+              action.price,
               action.selectService,
               action.photoUrl
             )

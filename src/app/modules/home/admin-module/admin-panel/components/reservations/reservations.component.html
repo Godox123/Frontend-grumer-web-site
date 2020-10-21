@@ -6,6 +6,7 @@
     <p>{{ reservation.selectDate | date: 'dd/MM/yyyy' }}</p>
     <p>{{ reservation.selectTime }}</p>
     <p>{{ reservation.selectService }}</p>
+    <p>{{ reservation.price }}</p>
     <button (click)="openDeleteDialog(reservation._id)">delete</button>
     <button
       (click)="

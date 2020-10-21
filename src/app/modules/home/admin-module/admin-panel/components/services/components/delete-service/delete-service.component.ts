@@ -13,7 +13,6 @@ import { ConfirmServiceModalComponent } from '../confirm-service-modal/confirm-s
 export class DeleteServiceComponent {
   constructor(
     private storeServices$: Store<ServicesState>,
-
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA)
     public data: {

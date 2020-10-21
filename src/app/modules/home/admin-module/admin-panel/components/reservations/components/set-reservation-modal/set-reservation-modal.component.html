@@ -43,7 +43,7 @@
             *ngFor="let service of services$ | async"
           >
             <mat-option
-              (click)="selectedServiceCheckMethod()"
+              (click)="selectedServiceCheckMethod(service)"
               value="{{ service.servicename }}"
               >{{ service.servicename }}</mat-option
             >

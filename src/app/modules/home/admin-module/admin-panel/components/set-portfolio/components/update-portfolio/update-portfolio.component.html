@@ -1,0 +1,64 @@
+<div class="update-portfolio-container">
+  <form
+    class="update-portfolio-form"
+    novalidate
+    enctype="multipart/form-data"
+    [formGroup]="updatePortfolioForm"
+    (ngSubmit)="updatePortfolio()"
+  >
+    <div class="content">
+      <button (click)="onNoClick()" type="button">Close</button>
+      <mat-form-field class="update-portfolio__input-description">
+        <textarea
+          formControlName="description"
+          matInput
+          placeholder="Введите описание работы"
+          [value]="data.description"
+        ></textarea>
+        <mat-error
+          *ngIf="updatePortfolioForm.get('description').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error>
+      </mat-form-field>
+      <div class="beforeImg">
+        <img
+          *ngIf="!imgSrcBefore"
+          class="selectImgBefore"
+          [src]="data.photoUrlBefore"
+          alt=""
+        />
+        <img
+          *ngIf="imgSrcBefore"
+          class="selectImgBefore"
+          [src]="imgSrcBefore"
+        />
+        <input
+          class="before"
+          (change)="
+            selectImg($event.target.classList.value, $event.target.files)
+          "
+          type="file"
+        />
+      </div>
+      <div class="afterImg">
+        <img
+          *ngIf="!imgSrcAfter"
+          class="selectImgAfter"
+          [src]="data.photoUrlAfter"
+        />
+        <img *ngIf="imgSrcAfter" class="selectImgAfter" [src]="imgSrcAfter" />
+        <input
+          class="after"
+          (change)="
+            selectImg($event.target.classList.value, $event.target.files)
+          "
+          type="file"
+        />
+      </div>
+    </div>
+    <button type="submit" mat-button class="update-portfolio__submit-button">
+      Добавить сервис
+    </button>
+  </form>
+</div>

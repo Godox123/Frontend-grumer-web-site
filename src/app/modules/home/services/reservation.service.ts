@@ -19,6 +19,7 @@ export class ReservationService {
     phone: number,
     selectDate: Date,
     selectTime: number,
+    price: string,
     selectService: string,
     photoUrl: string
   ): Observable<Object> {
@@ -31,6 +32,7 @@ export class ReservationService {
         selectDate,
         selectTime,
         selectService,
+        price,
         photoUrl
       },
       { observe: 'response' }

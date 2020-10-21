@@ -1,9 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ServicesState } from 'src/app/core/state/reducers/services.reducer';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ServicesActions } from 'src/app/core/state/actions/services.actions';
 import { ConfirmServiceModalComponent } from '../confirm-service-modal/confirm-service-modal.component';
 
@@ -21,7 +20,6 @@ export class UpdateServiceComponent implements OnInit {
 
   constructor(
     private store$: Store<ServicesState>,
-    private dialogRef: MatDialogRef<UpdateServiceComponent>,
     private fb: FormBuilder,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA)

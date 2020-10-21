@@ -93,6 +93,7 @@ export const ReservationsActions = {
       phone: number;
       selectDate: Date;
       selectTime: number;
+      price: string;
       selectService: string;
       photoUrl: string;
     }>()

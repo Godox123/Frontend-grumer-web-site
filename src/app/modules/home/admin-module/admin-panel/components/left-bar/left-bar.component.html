@@ -30,3 +30,31 @@
     </ul>
   </nav>
 </div>
+
+<div *ngIf="showState$ | async" style="left:0;" class="admin__bar">
+  <nav class="navigation navigation__body">
+    <ul>
+      <li><a routerLink="/admin">Статистика</a></li>
+      <li>
+        <a routerLink="/admin/users" routerLinkActive="active-link"
+          >Пользователи</a
+        >
+      </li>
+      <li>
+        <a routerLink="/admin/reservations" routerLinkActive="active-link"
+          >Бронирования</a
+        >
+      </li>
+      <li>
+        <a routerLink="/admin/portfolio" routerLinkActive="active-link"
+          >Портфолио</a
+        >
+      </li>
+      <li>
+        <a routerLink="/admin/services" routerLinkActive="active-link"
+          >Сервисы</a
+        >
+      </li>
+    </ul>
+  </nav>
+</div>

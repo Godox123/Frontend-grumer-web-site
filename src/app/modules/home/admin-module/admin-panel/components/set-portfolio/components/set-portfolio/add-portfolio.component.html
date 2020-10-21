@@ -1,0 +1,48 @@
+<div class="set-portfolio-container">
+  <form
+    class="set-portfolio-form"
+    novalidate
+    enctype="multipart/form-data"
+    [formGroup]="setPortfolioForm"
+    (ngSubmit)="setPortfolio()"
+  >
+    <div class="content">
+      <button type="button" (click)="onNoClick()">Close</button>
+      <mat-form-field class="set-portfolio__input-description">
+        <textarea
+          formControlName="description"
+          matInput
+          placeholder="Введите описание работы"
+        ></textarea>
+        <mat-error
+          *ngIf="setPortfolioForm.get('description').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error>
+      </mat-form-field>
+      <div class="beforeImg">
+        <img class="selectImgBefore" [src]="imgSrcBefore" />
+        <input
+          class="before"
+          (change)="
+            selectImg($event.target.classList.value, $event.target.files)
+          "
+          type="file"
+        />
+      </div>
+      <div class="afterImg">
+        <img class="selectImgAfter" [src]="imgSrcAfter" />
+        <input
+          class="after"
+          (change)="
+            selectImg($event.target.classList.value, $event.target.files)
+          "
+          type="file"
+        />
+      </div>
+    </div>
+    <button type="submit" mat-button class="set-portfolio__submit-button">
+      Добавить сервис
+    </button>
+  </form>
+</div>

@@ -23,6 +23,10 @@ import { DeleteServiceComponent } from './admin-panel/components/services/compon
 import { UpdateServiceComponent } from './admin-panel/components/services/components/update-service/update-service.component';
 import { AddServiceComponent } from './admin-panel/components/services/components/add-service/add-service.component';
 import { ConfirmServiceModalComponent } from './admin-panel/components/services/components/confirm-service-modal/confirm-service-modal.component';
+import { UpdatePortfolioComponent } from './admin-panel/components/set-portfolio/components/update-portfolio/update-portfolio.component';
+import { DeletePortfolioComponent } from './admin-panel/components/set-portfolio/components/delete-portfolio/delete-portfolio.component';
+import { ConfirmationMessageComponent } from './admin-panel/components/set-portfolio/components/confirmation-message/confirmation-message.component';
+import { AddPortfolioComponent } from './admin-panel/components/set-portfolio/components/set-portfolio/add-portfolio.component';
 
 const routes: Routes = [
   {
@@ -57,7 +61,11 @@ const routes: Routes = [
     DeleteServiceComponent,
     UpdateServiceComponent,
     AddServiceComponent,
-    ConfirmServiceModalComponent
+    ConfirmServiceModalComponent,
+    UpdatePortfolioComponent,
+    DeletePortfolioComponent,
+    ConfirmationMessageComponent,
+    AddPortfolioComponent
   ],
   entryComponents: [
     UserDeleteConfirmationComponent,
@@ -69,7 +77,13 @@ const routes: Routes = [
     DeleteServiceComponent,
     UpdateServiceComponent,
     AddServiceComponent,
-    ConfirmServiceModalComponent
+    ConfirmServiceModalComponent,
+    AddPortfolioComponent,
+    UpdatePortfolioComponent,
+    DeletePortfolioComponent,
+    ConfirmServiceModalComponent,
+    ConfirmationMessageComponent,
+    ConfirmationMessageComponent
   ],
   imports: [
     CommonModule,

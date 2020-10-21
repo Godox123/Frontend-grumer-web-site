@@ -1,0 +1,3 @@
+<p class="successMessage">{{ portfolioSuccessMessage$ | async }}</p>
+<p class="failedMessage">{{ portfolioFailedMessage$.message | async }}</p>
+<button class="closeMessage" (click)="onNoClick()">Close</button>

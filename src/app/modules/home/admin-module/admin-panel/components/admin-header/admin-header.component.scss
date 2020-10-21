@@ -9,4 +9,40 @@
     line-height: 60px;
     text-align: center;
   }
+  mat-icon{
+    font-size: 0px;
+    position:none;
+    top:0
+  }
+}
+
+@media(max-width: 1023px){
+  .admin-header {
+    position: relative;
+    h1{
+      font-size: 16px;
+    }
+    a{
+      position: absolute;
+      top:0;
+      width:50px;
+      height: 100%;
+      mat-icon{
+        font-size: 30px;
+        position: absolute;
+        top:25%;
+        color: white;
+      }
+    }
+    .to-nav-menu{
+      left:0;
+      .mat-icon{
+        left:15px;
+      }
+    }
+    .to-main-page{
+      right:0;
+    }
+  }
+
 }

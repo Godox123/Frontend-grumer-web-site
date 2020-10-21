@@ -1,8 +1,12 @@
 @import '../../../../../../../variables';
-
+.admin__bar{
+  display: none;
+}
 .admin-bar {
   background: $webDarkBg;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
+  width: 30vw;
   .navigation {
     ul {
       list-style: none;
@@ -36,5 +40,25 @@
         }
       }
     }
+  }
+}
+
+@media(max-width: 1023px){
+  .admin-bar{
+    display: none;
+  }
+  .admin__bar{
+    display: block;
+    width: 80vw;
+    position: fixed;
+    left: -80vw;
+    height: 100%;
+    list-style: none;
+    background-color: #33373e;
+    padding: 55px 10px 10px 20px;
+    margin: 0;
+    top: 0;
+    transition: left 0.2s;
+    z-index: 4;
   }
 }
