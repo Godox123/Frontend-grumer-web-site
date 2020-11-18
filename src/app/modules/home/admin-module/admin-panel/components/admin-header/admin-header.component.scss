@@ -9,6 +9,7 @@
     line-height: 60px;
     text-align: center;
   }
+
   mat-icon{
     font-size: 0px;
     position:none;
@@ -18,7 +19,11 @@
 
 @media(max-width: 1023px){
   .admin-header {
-    position: relative;
+      position: sticky;
+      top:0;
+      width:100%;
+      z-index: 5;
+
     h1{
       font-size: 16px;
     }
@@ -35,6 +40,7 @@
       }
     }
     .to-nav-menu{
+      visibility: visible;
       left:0;
       .mat-icon{
         left:15px;

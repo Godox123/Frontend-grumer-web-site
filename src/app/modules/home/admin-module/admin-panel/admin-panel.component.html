@@ -1,7 +1,12 @@
 <div class="admin-container">
-  <app-left-bar></app-left-bar>
+  <div *ngIf="windowWidth$ | async; else desktop">
+    <app-left-bar *ngIf="showState$ | async"></app-left-bar>
+  </div>
+  <ng-template #desktop>
+    <app-left-bar></app-left-bar>
+  </ng-template>
   <div class="content-right">
-    <admin-header></admin-header>
+    <admin-header class="header"></admin-header>
     <router-outlet></router-outlet>
   </div>
 </div>

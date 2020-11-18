@@ -27,6 +27,7 @@ import { UpdatePortfolioComponent } from './admin-panel/components/set-portfolio
 import { DeletePortfolioComponent } from './admin-panel/components/set-portfolio/components/delete-portfolio/delete-portfolio.component';
 import { ConfirmationMessageComponent } from './admin-panel/components/set-portfolio/components/confirmation-message/confirmation-message.component';
 import { AddPortfolioComponent } from './admin-panel/components/set-portfolio/components/set-portfolio/add-portfolio.component';
+import { UsersItemsComponent } from './admin-panel/components/users/components/users-items/users-items.component';
 
 const routes: Routes = [
   {
@@ -65,7 +66,8 @@ const routes: Routes = [
     UpdatePortfolioComponent,
     DeletePortfolioComponent,
     ConfirmationMessageComponent,
-    AddPortfolioComponent
+    AddPortfolioComponent,
+    UsersItemsComponent
   ],
   entryComponents: [
     UserDeleteConfirmationComponent,

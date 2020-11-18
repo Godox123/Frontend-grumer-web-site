@@ -11,6 +11,8 @@ import { UpdateReservationModalComponent } from './components/update-reservation
 import { SetReservationModalComponent } from './components/set-reservation-modal/set-reservation-modal.component';
 import { ServicesState } from 'src/app/core/state/reducers/services.reducer';
 import { ServicesActions } from 'src/app/core/state/actions/services.actions';
+import { SharedState } from 'src/app/core/state/reducers/shared.reducer';
+import { windowWidth } from 'src/app/core/state/selectors/shared.selectors';
 
 @Component({
   selector: 'app-reservations',
@@ -22,7 +24,24 @@ export class ReservationsComponent implements OnInit {
     select(reservationsInformation)
   );
 
+  public windowWidth$: Observable<boolean> = this.sharedStore$.pipe(
+    select(windowWidth)
+  );
+
+  public displayedColumns: string[] = [
+    'email',
+    'username',
+    'phone',
+    'selectDate',
+    'selectTime',
+    'selectService',
+    'price',
+    'actionUpdate',
+    'actionDelete'
+  ];
+
   constructor(
+    private sharedStore$: Store<SharedState>,
     private storeServices$: Store<ServicesState>,
     private store$: Store<ReservationsState>,
     public dialog: MatDialog
@@ -42,12 +61,15 @@ export class ReservationsComponent implements OnInit {
         selectedService: service
       }
     });
+
     dialogRef.afterClosed().subscribe(() => {
       this.store$.dispatch(ReservationsActions.clearReservationTimeAction());
     });
   }
+
   public openAddReservationDialog(): void {
     const dialogRef = this.dialog.open(SetReservationModalComponent);
+
     dialogRef.afterClosed().subscribe(() => {
       this.store$.dispatch(ReservationsActions.clearReservationTimeAction());
     });
@@ -56,5 +78,23 @@ export class ReservationsComponent implements OnInit {
   public ngOnInit(): void {
     this.store$.dispatch(ReservationsActions.getReservationsAction());
     this.storeServices$.dispatch(ServicesActions.getServicesAction());
+
+    this.reservations$.subscribe((reservations: Reservation[]) => {
+      if (reservations) {
+        reservations.forEach(reservation => {
+          if (
+            new Date(reservation.selectDate).getTime() < new Date().getTime()
+          ) {
+            if (reservation.selectTime < new Date().getHours()) {
+              this.store$.dispatch(
+                ReservationsActions.deleteReservationAction({
+                  id: reservation[`_id`]
+                })
+              );
+            }
+          }
+        });
+      }
+    });
   }
 }

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DoCheck,
+  OnInit
+} from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ReservationsActions } from 'src/app/core/state/actions/reservation.actions';
 import { Store, select } from '@ngrx/store';
@@ -14,7 +19,8 @@ import { ConfirmationMessagesComponent } from '../confirmation-messages/confirma
 @Component({
   selector: 'app-set-reservation-modal',
   templateUrl: './set-reservation-modal.component.html',
-  styleUrls: ['./set-reservation-modal.component.scss']
+  styleUrls: ['./set-reservation-modal.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SetReservationModalComponent implements OnInit {
   public setReservationForm: FormGroup;
@@ -61,26 +67,36 @@ export class SetReservationModalComponent implements OnInit {
     const a = (): boolean => {
       if (arr.includes(this.nine)) {
         return (this.visibleNine = false);
+      } else {
+        !this.visibleNine ? (this.visibleNine = true) : '';
       }
     };
+
     const b = (): boolean => {
       if (arr.includes(this.twelve)) {
         return (this.visibleTwelve = false);
+      } else {
+        !this.visibleTwelve ? (this.visibleTwelve = true) : '';
       }
     };
 
     const c = (): boolean => {
       if (arr.includes(this.fifteen)) {
         return (this.visibleFifteen = false);
+      } else {
+        !this.visibleFifteen ? (this.visibleFifteen = true) : '';
       }
     };
 
-    const v = (): boolean => {
+    const v = (): void => {
       if (arr.length > 3 || arr.length == 3) {
-        return (this.visibleReservationTime = false);
+        this.visibleReservationTime = false;
+      } else {
+        !this.visibleReservationTime
+          ? (this.visibleReservationTime = true)
+          : '';
       }
     };
-    console.log(arr.length);
     a();
     b();
     c();
@@ -116,10 +132,12 @@ export class SetReservationModalComponent implements OnInit {
     );
     this.openDialog();
   }
+
   public onNoClick(): void {
     this.selectedServiceCheck = false;
     this.dialogRef.close();
   }
+
   public checkReservationDate(): void {
     let { selectDate, selectService } = this.setReservationForm.value;
     this.store$.dispatch(
@@ -129,6 +147,7 @@ export class SetReservationModalComponent implements OnInit {
     this.reservationTime.subscribe((res: number[]): number[] => {
       return (arr = res);
     });
+
     this.checkTime(arr);
   }
 

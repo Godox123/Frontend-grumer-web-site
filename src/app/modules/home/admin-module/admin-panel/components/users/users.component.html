@@ -1,37 +1,95 @@
-<div class="users-container">
-  <table mat-table [dataSource]="users$" class="mat-elevation-z8">
-    <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef>Имя</th>
-      <td mat-cell *matCellDef="let element">{{ element.username }}</td>
-    </ng-container>
+<ng-template #desktop>
+  <div class="users-container">
+    <table mat-table [dataSource]="users$" class="mat-elevation-z8">
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef>Имя</th>
+        <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef>Email</th>
-      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
-    </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="phone">
-      <th mat-header-cell *matHeaderCellDef>Моб. номер</th>
-      <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
-    </ng-container>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Моб. номер</th>
+        <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+      </ng-container>
 
-    <ng-container matColumnDef="creation_dt">
-      <th mat-header-cell *matHeaderCellDef>Дата регистарции</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.creation_dt | date: 'dd/MM/y' }}
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="creation_dt">
+        <th mat-header-cell *matHeaderCellDef>Дата регистарции</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.creation_dt | date: 'dd/MM/y' }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="actionDelete">
-      <th mat-header-cell *matHeaderCellDef>Удалить аккаунт</th>
-      <td mat-cell *matCellDef="let element">
-        <button color="warn" mat-button (click)="openDialog(element._id)">
-          Удалить
+      <ng-container matColumnDef="actionDelete">
+        <th mat-header-cell *matHeaderCellDef>Удалить аккаунт</th>
+        <td mat-cell *matCellDef="let element">
+          <button color="warn" mat-button (click)="openDialog(element._id)">
+            Удалить
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</ng-template>
+
+<div
+  *ngIf="windowWidth$ | async; else desktop"
+  class="users__container--mobile"
+>
+  <mat-icon (click)="openSearchWindow()">person_search</mat-icon>
+  <app-users-items [users]="users$"></app-users-items>
+
+  <div class="users__search" *ngIf="searchWindow">
+    <div class="users__found-users">
+      <div class="users__close-icon">
+        <mat-icon (click)="openSearchWindow()">close</mat-icon>
+      </div>
+
+      <form
+        class="search__form"
+        novalidate
+        [formGroup]="searchForm"
+        (ngSubmit)="search()"
+      >
+        <mat-form-field class="searchForm__input">
+          <input
+            formControlName="searchValue"
+            matInput
+            type="tel"
+            placeholder="Введите номер телефона пользователя"
+          />
+          <mat-error *ngIf="searchForm.get('searchValue').hasError('required')">
+            Поле не может быть пустым
+          </mat-error>
+          <mat-error *ngIf="searchForm.get('searchValue').hasError('pattern')">
+            Введите номер в формате: (375 (29) 1234567)
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          [disabled]="searchForm.invalid"
+          type="submit"
+          class="searchForm__submit"
+          mat-fab
+        >
+          <mat-icon>person_search</mat-icon>
         </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+      </form>
+      <div>
+        <app-users-items
+          *ngIf="foundUsers$ | async; else unset"
+          [users]="foundUsers$"
+        ></app-users-items>
+        <ng-template #unset>
+          <p class="users__not-found">Пользователей пока не найдено</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
 </div>

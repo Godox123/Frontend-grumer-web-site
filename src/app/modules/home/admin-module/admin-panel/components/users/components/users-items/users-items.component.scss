@@ -1,0 +1,28 @@
+.users__items{
+    scroll-snap-type: y mandatory;
+
+    .users__item{
+      scroll-snap-align: center;
+      padding:10px;
+      margin: 20px ;
+      border-bottom: 1px solid lightgray;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+      .users__element--title{
+        color: darkgray;
+      }
+  
+      .users__delete-button{
+        background: #33373e;
+        height: 4vh;
+        border: 1px solid darkorange;
+        border-radius: 4px;
+        margin: 0 0 20px 0;
+        color: white;
+      }
+  
+      .users__delete-button:hover{
+        cursor: pointer;
+      }
+    }
+  }

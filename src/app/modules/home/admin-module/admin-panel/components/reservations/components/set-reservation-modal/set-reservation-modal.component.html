@@ -8,18 +8,22 @@
     <div class="content">
       <mat-form-field class="content__input-email">
         <input formControlName="email" matInput placeholder="Введите email" />
+
         <mat-error *ngIf="setReservationForm.get('email').hasError('email')">
           Не корректный email
         </mat-error>
       </mat-form-field>
+
       <mat-form-field class="content__input-username">
         <input formControlName="username" matInput placeholder="Введите Имя" />
+
         <mat-error
           *ngIf="setReservationForm.get('username').hasError('required')"
         >
           Поле не может быть пустым
         </mat-error>
       </mat-form-field>
+
       <mat-form-field class="content__input-phone">
         <input
           type="number"
@@ -27,18 +31,22 @@
           matInput
           placeholder="Введите номер телефона"
         />
+
         <mat-error *ngIf="setReservationForm.get('phone').hasError('required')">
           Поле не может быть пустым
         </mat-error>
+
         <mat-error *ngIf="setReservationForm.get('phone').hasError('pattern')">
           9-максимальное колличество символов
         </mat-error>
       </mat-form-field>
+
       <mat-form-field class="content__input-selectService">
         <mat-select
           placeholder="Выберите сервис"
           formControlName="selectService"
-          ><div
+        >
+          <div
             class="serviceNameContainer"
             *ngFor="let service of services$ | async"
           >
@@ -56,6 +64,7 @@
         class="content__input-selectDate"
       >
         <mat-label>Выберите дату</mat-label>
+
         <input
           formControlName="selectDate"
           (ngModelChange)="checkReservationDate()"
@@ -64,8 +73,10 @@
           [matDatepicker]="picker"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+
       <div *ngIf="reservationTime | async">
         <mat-form-field
           *ngIf="visibleReservationTime; else hideReservationTime"
@@ -85,6 +96,7 @@
         </mat-form-field>
       </div>
     </div>
+
     <ng-template #hideReservationTime>
       <p>Свободного времени нет</p>
     </ng-template>
@@ -94,26 +106,3 @@
     </button>
   </form>
 </div>
-<!-- <div class="reset-container">
-    <form
-      class="reset-control"
-      novalidate
-      (ngSubmit)="reset()"
-      [formGroup]="resetForm"
-    >
-      <a mat-raised-button routerLink="/">Венуться на главную</a>
-      <span class="password">
-        <mat-form-field>
-          <input
-            formControlName="password"
-            matInput
-            placeholder="Введите новый пароль"
-            [type]="hidePassword ? 'password' : 'text'"
-          />
-          <mat-error *ngIf="resetForm.get('password').hasError('required')">
-            Поле не может быть пустым
-          </mat-error>
-          <mat-error *ngIf="resetForm.get('password').hasError('minlength')">
-            Короткий пароль (Минимум 6 символов)
-          </mat-error>
-        </mat-form-field> -->

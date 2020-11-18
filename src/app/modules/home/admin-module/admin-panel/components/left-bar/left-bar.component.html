@@ -31,30 +31,53 @@
   </nav>
 </div>
 
-<div *ngIf="showState$ | async" style="left:0;" class="admin__bar">
-  <nav class="navigation navigation__body">
-    <ul>
-      <li><a routerLink="/admin">Статистика</a></li>
-      <li>
-        <a routerLink="/admin/users" routerLinkActive="active-link"
-          >Пользователи</a
-        >
-      </li>
-      <li>
-        <a routerLink="/admin/reservations" routerLinkActive="active-link"
-          >Бронирования</a
-        >
-      </li>
-      <li>
-        <a routerLink="/admin/portfolio" routerLinkActive="active-link"
-          >Портфолио</a
-        >
-      </li>
-      <li>
-        <a routerLink="/admin/services" routerLinkActive="active-link"
-          >Сервисы</a
-        >
-      </li>
-    </ul>
-  </nav>
+<div class="admin__bar-wrap">
+  <div (click)="closeMenu()" class="admin__bar-block"></div>
+  <div class="admin__bar">
+    <mat-icon (click)="closeMenu()" class="admin__icon-clear">clear</mat-icon>
+    <nav class="navigation navigation__body">
+      <ul class="navigation__list">
+        <li class="navigation__element">
+          <mat-icon class="navigation__icon">trending_up</mat-icon>
+          <a class="navigation__link" routerLink="/admin">Статистика</a>
+        </li>
+        <li class="navigation__element">
+          <mat-icon class="navigation__icon">people</mat-icon>
+          <a
+            class="navigation__link"
+            routerLink="/admin/users"
+            routerLinkActive="active-link"
+            >Пользователи</a
+          >
+        </li>
+        <li class="navigation__element">
+          <mat-icon class="navigation__icon">lock</mat-icon>
+          <a
+            class="navigation__link"
+            routerLink="/admin/reservations"
+            routerLinkActive="active-link"
+            >Бронирования</a
+          >
+        </li>
+        <li class="navigation__element">
+          <mat-icon class="navigation__icon">work</mat-icon>
+          <a
+            class="navigation__link"
+            routerLink="/admin/portfolio"
+            routerLinkActive="active-link"
+            >Портфолио</a
+          >
+        </li>
+        <li class="navigation__element">
+          <mat-icon class="navigation__icon">pets</mat-icon>
+          <a
+            class="navigation__link"
+            routerLink="/admin/services"
+            routerLinkActive="active-link"
+            >Сервисы</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>

@@ -55,8 +55,6 @@ export class ReservationsEffect {
             element.selectService === data.selectService
           ) {
             reservationTime.push(element.selectTime);
-          } else {
-            console.log('else');
           }
         });
         return ReservationsActions.getSelectedDateSuccessAction({

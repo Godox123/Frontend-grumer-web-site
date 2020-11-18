@@ -1,7 +1,9 @@
 <div class="admin-header">
-  <a (click)="showMenu()" class="to-nav-menu"
+  <a *ngIf="windowWidth$ | async" (click)="showMenu()" class="to-nav-menu"
     ><mat-icon>view_headline</mat-icon></a
   >
   <h1>Панель администратора</h1>
-  <a routerLink="/" class="to-main-page"> <mat-icon>reply</mat-icon></a>
+  <a *ngIf="windowWidth$ | async" routerLink="/" class="to-main-page">
+    <mat-icon>reply</mat-icon></a
+  >
 </div>

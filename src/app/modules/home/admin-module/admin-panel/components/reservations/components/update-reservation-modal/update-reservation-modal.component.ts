@@ -56,23 +56,34 @@ export class UpdateReservationModalComponent implements OnInit {
     const a = (): boolean => {
       if (arr.includes(this.nine)) {
         return (this.visibleNine = false);
+      } else {
+        !this.visibleNine ? (this.visibleNine = true) : '';
       }
     };
+
     const b = (): boolean => {
       if (arr.includes(this.twelve)) {
         return (this.visibleTwelve = false);
+      } else {
+        !this.visibleTwelve ? (this.visibleTwelve = true) : '';
       }
     };
 
     const c = (): boolean => {
       if (arr.includes(this.fifteen)) {
         return (this.visibleFifteen = false);
+      } else {
+        !this.visibleFifteen ? (this.visibleFifteen = true) : '';
       }
     };
 
-    const v = (): boolean => {
+    const v = (): void => {
       if (arr.length > 3 || arr.length == 3) {
-        return (this.visibleReservationTime = false);
+        this.visibleReservationTime = false;
+      } else {
+        !this.visibleReservationTime
+          ? (this.visibleReservationTime = true)
+          : '';
       }
     };
     a();
@@ -103,7 +114,6 @@ export class UpdateReservationModalComponent implements OnInit {
   public checkReservationDate(): void {
     let { selectDate } = this.updateReservationForm.value;
     const selectService = this.data.selectedService;
-    console.log(selectService);
     this.store$.dispatch(
       ReservationsActions.getSelectedDateAction({ selectDate, selectService })
     );
@@ -115,7 +125,6 @@ export class UpdateReservationModalComponent implements OnInit {
   }
 
   public selectedServiceCheckMethod(): void {
-    console.log(this.selectedServiceCheck);
     this.selectedServiceCheck = true;
   }
 

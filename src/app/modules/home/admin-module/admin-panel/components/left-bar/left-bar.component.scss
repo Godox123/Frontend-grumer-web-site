@@ -1,8 +1,10 @@
 @import '../../../../../../../variables';
-.admin__bar{
+
+.admin__bar-wrap{
   display: none;
 }
 .admin-bar {
+  display: block;
   background: $webDarkBg;
   min-height: 100vh;
   height: 100%;
@@ -47,18 +49,57 @@
   .admin-bar{
     display: none;
   }
-  .admin__bar{
+  .admin__bar-wrap{
     display: block;
-    width: 80vw;
-    position: fixed;
-    left: -80vw;
-    height: 100%;
-    list-style: none;
-    background-color: #33373e;
-    padding: 55px 10px 10px 20px;
-    margin: 0;
-    top: 0;
-    transition: left 0.2s;
-    z-index: 4;
+
+    .admin__bar-block{
+      display: block;
+      position: fixed;
+      width:100vw;
+      height: 100vh;
+      background: #33373e;
+      opacity: 0.4;
+      z-index: 1;
+    }
+      .admin__bar{
+        display: block;
+        width: 80vw;
+        position: fixed;
+        height: 100%;
+        list-style: none;
+        background-color: #33373e;
+        padding: 55px 10px 10px 20px;
+        margin: 0;
+        top: 0;
+        transition: left 0.4s;
+        z-index: 6;
+  
+        .admin__icon-clear{
+          position: absolute;
+          right:5vw;
+          color:white;
+        }
+        .navigation__element{
+          margin: 0 0 25px 0;
+          padding: 0 0 0 25px;
+          box-sizing: border-box;
+          width: 100%;
+          .navigation__icon{
+            color: white;
+          }
+          .navigation__link{
+            color: white;
+            text-decoration: none;
+            padding: 0 0 0 10px;
+            vertical-align: super;
+          }
+        }
+        .navigation__element:first-child{
+          margin-top: 25px;
+        }
+        
+      }
   }
+
+
 }

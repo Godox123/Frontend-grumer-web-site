@@ -1,0 +1,25 @@
+<div class="users__items">
+  <div
+    class="users__item"
+    *ngFor="let item of users | async; trackBy: identify"
+  >
+    <p class="users__item-name users__element">
+      <span class="users__element--title">Имя:</span> {{ item.username }}
+    </p>
+    <p class="users__item-email users__element">
+      <span class="users__element--title">Эл.почта:</span>
+      {{ item.email }}
+    </p>
+    <p class="users__item-phone users__element">
+      <span class="users__element--title">Номер телефона:</span>
+      {{ item.phone }}
+    </p>
+    <p class="users__item-date users__element">
+      <span class="users__element--title">Дата регистрации:</span>
+      {{ item.creation_dt | date: 'dd.MM.yyyy' }}
+    </p>
+    <button (click)="openDialog(item._id)" class="users__delete-button">
+      Удалить
+    </button>
+  </div>
+</div>
