@@ -56,10 +56,6 @@ export class UsersComponent implements OnInit {
     this.store$.dispatch(
       SharedActions.searchUserAction({ searchValue: +searchValue })
     );
-
-    this.foundUsers$.subscribe((res: User[]) =>
-      res ? '' : alert('Пользователи не найдены')
-    );
   }
 
   public openSearchWindow(): void {

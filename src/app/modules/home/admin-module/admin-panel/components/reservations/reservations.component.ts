@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DoCheck,
+  OnInit
+} from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { ReservationsState } from 'src/app/core/state/reducers/reservations.reducer';
 import { ReservationsActions } from 'src/app/core/state/actions/reservation.actions';
@@ -17,9 +22,10 @@ import { windowWidth } from 'src/app/core/state/selectors/shared.selectors';
 @Component({
   selector: 'app-reservations',
   templateUrl: './reservations.component.html',
-  styleUrls: ['./reservations.component.scss']
+  styleUrls: ['./reservations.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ReservationsComponent implements OnInit {
+export class ReservationsComponent implements OnInit, DoCheck {
   public reservations$: Observable<Reservation[]> = this.store$.pipe(
     select(reservationsInformation)
   );
@@ -46,6 +52,10 @@ export class ReservationsComponent implements OnInit {
     private store$: Store<ReservationsState>,
     public dialog: MatDialog
   ) {}
+
+  public identify(index: number, item: Reservation): number {
+    return item.phone;
+  }
 
   public openDeleteDialog(id: string): void {
     this.dialog.open(DeleteReservationModalComponent, {
@@ -75,17 +85,15 @@ export class ReservationsComponent implements OnInit {
     });
   }
 
-  public ngOnInit(): void {
-    this.store$.dispatch(ReservationsActions.getReservationsAction());
-    this.storeServices$.dispatch(ServicesActions.getServicesAction());
-
+  public ngDoCheck(): void {
     this.reservations$.subscribe((reservations: Reservation[]) => {
       if (reservations) {
-        reservations.forEach(reservation => {
+        reservations.forEach((reservation: Reservation): void => {
           if (
             new Date(reservation.selectDate).getTime() < new Date().getTime()
           ) {
             if (reservation.selectTime < new Date().getHours()) {
+              console.log(reservation);
               this.store$.dispatch(
                 ReservationsActions.deleteReservationAction({
                   id: reservation[`_id`]
@@ -97,4 +105,37 @@ export class ReservationsComponent implements OnInit {
       }
     });
   }
+
+  public ngOnInit(): void {
+    this.store$.dispatch(ReservationsActions.getReservationsAction());
+    this.storeServices$.dispatch(ServicesActions.getServicesAction());
+  }
 }
+
+// this.reservations$.subscribe((reservations: Reservation[]) => {
+//   if (reservations) {
+//     reservations.forEach(reservation => {
+//       if (
+//         new Date(reservation.selectDate).getTime() < new Date().getTime()
+//       ) {
+//         if (reservation.selectTime < new Date().getHours()) {
+//           this.store$.dispatch(
+//             ReservationsActions.deleteReservationAction({
+//               id: reservation[`_id`]
+//             })
+//           );
+//         }
+//       }
+//     });
+//   }
+// });
+
+// reservations.forEach(reservation => {
+//   if (new Date(reservation.selectDate).getTime() < new Date().getTime()) {
+//     if (reservation.selectTime < new Date().getHours()) {
+//       Reservation.findOneAndDelete({
+//         _id: reservation._id,
+//       });
+//     }
+//   }
+// });

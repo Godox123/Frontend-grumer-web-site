@@ -98,9 +98,11 @@ export class UpdateReservationModalComponent implements OnInit {
   }
   public updateReservation(): void {
     let { selectDate, selectTime } = this.updateReservationForm.value;
+
     const selectService = this.data.selectedService;
+
     const id: string = this.data.userId;
-    console.log(selectDate, selectTime, selectService);
+
     this.store$.dispatch(
       ReservationsActions.updateReservationAction({
         id,
@@ -109,18 +111,24 @@ export class UpdateReservationModalComponent implements OnInit {
         selectService
       })
     );
+
     this.openDialog();
   }
   public checkReservationDate(): void {
     let { selectDate } = this.updateReservationForm.value;
+
     const selectService = this.data.selectedService;
+
     this.store$.dispatch(
       ReservationsActions.getSelectedDateAction({ selectDate, selectService })
     );
+
     let arr: number[];
+
     this.reservationTime.subscribe((res: number[]): number[] => {
       return (arr = res);
     });
+
     this.checkTime(arr);
   }
 

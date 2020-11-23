@@ -5,8 +5,10 @@
     [formGroup]="setReservationForm"
     (ngSubmit)="setReservation()"
   >
+    <mat-icon (click)="onNoClick()" class="icon-close">close</mat-icon>
+
     <div class="content">
-      <mat-form-field class="content__input-email">
+      <mat-form-field class="content__input content__input-email">
         <input formControlName="email" matInput placeholder="Введите email" />
 
         <mat-error *ngIf="setReservationForm.get('email').hasError('email')">
@@ -14,7 +16,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="content__input-username">
+      <mat-form-field class="content__input content__input-username">
         <input formControlName="username" matInput placeholder="Введите Имя" />
 
         <mat-error
@@ -24,7 +26,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="content__input-phone">
+      <mat-form-field class="content__input content__input-phone">
         <input
           type="number"
           formControlName="phone"
@@ -41,7 +43,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="content__input-selectService">
+      <mat-form-field class="content__input content__input-selectService">
         <mat-select
           placeholder="Выберите сервис"
           formControlName="selectService"
@@ -61,7 +63,7 @@
       <!-- пока сервис не выбран скрывать поле с датой -->
       <mat-form-field
         *ngIf="selectedServiceCheck"
-        class="content__input-selectDate"
+        class="content__input content__input-selectDate"
       >
         <mat-label>Выберите дату</mat-label>
 
@@ -80,7 +82,7 @@
       <div *ngIf="reservationTime | async">
         <mat-form-field
           *ngIf="visibleReservationTime; else hideReservationTime"
-          class="content__input-selectTime"
+          class="content__input content__input-selectTime"
         >
           <mat-select formControlName="selectTime" placeholder="Выберите время">
             <mat-option *ngIf="visibleNine" value="{{ nine }}"
@@ -101,7 +103,13 @@
       <p>Свободного времени нет</p>
     </ng-template>
 
-    <button (click)="onNoClick()" mat-button mat-dialog-close type="submit">
+    <button
+      class="set-reservation-form__button"
+      (click)="onNoClick()"
+      mat-button
+      mat-dialog-close
+      type="submit"
+    >
       Добавить бронирование
     </button>
   </form>

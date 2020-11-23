@@ -1,0 +1,36 @@
+.set-reservation-container{
+
+
+.set-reservation-form{
+
+    position: relative;
+
+    .icon-close{
+        position: absolute;
+        right:0;
+        top:0;
+        cursor: pointer;
+    }
+    
+    width:400px;
+    padding: 10px;
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        .content__input{
+            width:350px;
+        }
+    }
+}
+
+ 
+
+    .set-reservation-form__button{
+        display: block;
+        margin: auto;
+    }
+}
+
