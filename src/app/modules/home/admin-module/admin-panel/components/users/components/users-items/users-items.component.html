@@ -18,7 +18,7 @@
       <span class="users__element--title">Дата регистрации:</span>
       {{ item.creation_dt | date: 'dd.MM.yyyy' }}
     </p>
-    <button (click)="openDialog(item._id)" class="users__delete-button">
+    <button (click)="openDialog(item._id)" mat-raised-button color="warn">
       Удалить
     </button>
   </div>

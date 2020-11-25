@@ -1,4 +1,34 @@
 <ng-template #desktop>
+  <form
+    class="search__form"
+    novalidate
+    [formGroup]="searchForm"
+    (ngSubmit)="search()"
+  >
+    <mat-form-field class="searchForm__input">
+      <input
+        formControlName="searchValue"
+        matInput
+        type="tel"
+        placeholder="Введите номер телефона пользователя"
+      />
+      <mat-error *ngIf="searchForm.get('searchValue').hasError('required')">
+        Поле не может быть пустым
+      </mat-error>
+      <mat-error *ngIf="searchForm.get('searchValue').hasError('pattern')">
+        Введите номер в формате: (375 (29) 1234567)
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      [disabled]="searchForm.invalid"
+      type="submit"
+      class="searchForm__submit"
+      mat-fab
+    >
+      <mat-icon>person_search</mat-icon>
+    </button>
+  </form>
   <div class="users-container">
     <table mat-table [dataSource]="users$" class="mat-elevation-z8">
       <ng-container matColumnDef="username">

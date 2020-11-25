@@ -37,11 +37,11 @@
     <mat-icon (click)="closeMenu()" class="admin__icon-clear">clear</mat-icon>
     <nav class="navigation navigation__body">
       <ul class="navigation__list">
-        <li class="navigation__element">
+        <li class="navigation__element" (click)="closeMenu()">
           <mat-icon class="navigation__icon">trending_up</mat-icon>
           <a class="navigation__link" routerLink="/admin">Статистика</a>
         </li>
-        <li class="navigation__element">
+        <li class="navigation__element" (click)="closeMenu()">
           <mat-icon class="navigation__icon">people</mat-icon>
           <a
             class="navigation__link"
@@ -50,7 +50,7 @@
             >Пользователи</a
           >
         </li>
-        <li class="navigation__element">
+        <li class="navigation__element" (click)="closeMenu()">
           <mat-icon class="navigation__icon">lock</mat-icon>
           <a
             class="navigation__link"
@@ -59,7 +59,7 @@
             >Бронирования</a
           >
         </li>
-        <li class="navigation__element">
+        <li class="navigation__element" (click)="closeMenu()">
           <mat-icon class="navigation__icon">work</mat-icon>
           <a
             class="navigation__link"
@@ -68,7 +68,7 @@
             >Портфолио</a
           >
         </li>
-        <li class="navigation__element">
+        <li class="navigation__element" (click)="closeMenu()">
           <mat-icon class="navigation__icon">pets</mat-icon>
           <a
             class="navigation__link"

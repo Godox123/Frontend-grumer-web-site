@@ -1,81 +1,88 @@
-.reservations{
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    overflow: auto;
+.reservations {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  overflow: auto;
 
-    th,td,button {
-        padding: 10px;
-        font-size: 12px;
-        text-align: center;
-        word-break: break-word;
-        width:6vw;
+  th,
+  td,
+  button {
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+    word-break: break-word;
+    width: 6vw;
+  }
+
+  th,
+  td {
+    word-break: break-word;
+  }
+
+  @media (max-width: 1400px) {
+    th,
+    td,
+    button {
+      font-size: 10px;
+      padding: 5px;
+      width: 5.8vw;
     }
-
-    th,td{word-break: break-word;}
-
-    @media(max-width:1400px){
-
-        th,td,button{
-            font-size: 10px;
-            padding: 5px;
-            width:5.8vw;
-        }
-       
-    }
+  }
 }
 
-.reservations__mobile{
-    width:100vw;
+.reservations__mobile {
+  width: 100vw;
 
-    .reservation{
-        padding: 15px;
-        margin: 20px ;
-        border-bottom: 1px solid lightgray;
-        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-        position: relative;
+  .reservation {
+    padding: 15px;
+    margin: 20px;
+    border-bottom: 1px solid lightgray;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+      0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 0 3px 0px rgba(0, 0, 0, 0.12);
+    position: relative;
 
-        .reservation__change--button{
-            margin: 0 10px 10px 0;
-        }
-
-        .reservation__elem{
-            margin: 0 0 10px 0;
-            border-bottom: 1px solid #eee;;
-
-            .reservation__text{
-                position: absolute;
-                right:10px;
-                font: 500 15px/20px 'Brush Script MT, Brush Script Std, cursive';
-                overflow: hidden;
-                width: 40%;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                text-align: end;
-            }
-        }
-        .reservation__elem:last-child{ margin: 0;}
+    .reservation__change--button {
+      margin: 0 10px 10px 0;
     }
 
+    .reservation__elem {
+      margin: 0 0 10px 0;
+      border-bottom: 1px solid #eee;
+      color: darkgray;
+
+      .reservation__text {
+        position: absolute;
+        right: 10px;
+        font: 500 15px/20px 'Brush Script MT, Brush Script Std, cursive';
+        overflow: hidden;
+        width: 40%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: end;
+        color: black;
+      }
+    }
+    .reservation__elem:last-child {
+      margin: 0;
+    }
+  }
 }
 
-.add-reservation{
+.add-reservation {
+  width: 100%;
+  padding-top: 10px;
 
-    width:100%;
-    padding-top: 10px;
+  .add-reservation__button {
+    border: none;
+    background: white;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    font: 500 16px/20px 'arial';
+  }
 
-    .add-reservation__button{
-        border: none;
-        background: white;
-        padding: 10px;
-        border-bottom: 1px solid white;
-        font:500 16px/20px 'arial';
-    }
-    
-    .add-reservation__button:hover{
-        cursor: pointer;
-        border-bottom: 1px solid red;
-        transition:border-bottom 0.8s;
-    }
+  .add-reservation__button:hover {
+    cursor: pointer;
+    border-bottom: 1px solid red;
+    transition: border-bottom 0.8s;
+  }
 }
-
