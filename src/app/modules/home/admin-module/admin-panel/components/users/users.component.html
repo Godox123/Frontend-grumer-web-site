@@ -1,34 +1,4 @@
 <ng-template #desktop>
-  <form
-    class="search__form"
-    novalidate
-    [formGroup]="searchForm"
-    (ngSubmit)="search()"
-  >
-    <mat-form-field class="searchForm__input">
-      <input
-        formControlName="searchValue"
-        matInput
-        type="tel"
-        placeholder="Введите номер телефона пользователя"
-      />
-      <mat-error *ngIf="searchForm.get('searchValue').hasError('required')">
-        Поле не может быть пустым
-      </mat-error>
-      <mat-error *ngIf="searchForm.get('searchValue').hasError('pattern')">
-        Введите номер в формате: (375 (29) 1234567)
-      </mat-error>
-    </mat-form-field>
-
-    <button
-      [disabled]="searchForm.invalid"
-      type="submit"
-      class="searchForm__submit"
-      mat-fab
-    >
-      <mat-icon>person_search</mat-icon>
-    </button>
-  </form>
   <div class="users-container">
     <table mat-table [dataSource]="users$" class="mat-elevation-z8">
       <ng-container matColumnDef="username">
@@ -72,8 +42,43 @@
   *ngIf="windowWidth$ | async; else desktop"
   class="users__container--mobile"
 >
-  <mat-icon (click)="openSearchWindow()">person_search</mat-icon>
-  <app-users-items [users]="users$"></app-users-items>
+  <form
+    class="search__form"
+    novalidate
+    [formGroup]="searchForm"
+    (ngSubmit)="search()"
+  >
+    <mat-form-field class="searchForm__input">
+      <input
+        class="search__input"
+        formControlName="searchValue"
+        matInput
+        type="tel"
+        placeholder="Введите номер телефона пользователя"
+      />
+      <mat-error *ngIf="searchForm.get('searchValue').hasError('required')">
+        Поле не может быть пустым
+      </mat-error>
+      <mat-error *ngIf="searchForm.get('searchValue').hasError('pattern')">
+        Введите номер в формате: (375 (29) 1234567)
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      [disabled]="searchForm.invalid"
+      type="submit"
+      class="searchForm__submit"
+      mat-raised-button
+      color="primary"
+    >
+      <mat-icon>person_search</mat-icon>
+    </button>
+  </form>
+  <app-users-items
+    [users]="(foundUsers$ | async) || (users$ | async)"
+  ></app-users-items>
+  <!-- <mat-icon (click)="openSearchWindow()">person_search</mat-icon>
+  <app-users-items [users]="users$"></app-users-items> -->
 
   <div class="users__search" *ngIf="searchWindow">
     <div class="users__found-users">

@@ -1,8 +1,5 @@
 <div class="users__items">
-  <div
-    class="users__item"
-    *ngFor="let item of users | async; trackBy: identify"
-  >
+  <div class="users__item" *ngFor="let item of users; trackBy: identify">
     <p class="users__item-name users__element">
       <span class="users__element--title">Имя:</span> {{ item.username }}
     </p>

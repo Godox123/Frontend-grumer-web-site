@@ -66,7 +66,7 @@ export class UsersComponent implements OnInit {
     this.store$.dispatch(UsersActions.getUsersAction());
 
     this.searchForm = this.fb.group({
-      searchValue: [null, [Validators.required, Validators.pattern('[0-9]{9}')]]
+      searchValue: [null, [Validators.pattern('[0-9]{9}')]]
     });
   }
 }
