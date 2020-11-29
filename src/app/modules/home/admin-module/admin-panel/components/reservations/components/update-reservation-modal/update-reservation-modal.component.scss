@@ -1,0 +1,19 @@
+.update__reservation-form{
+
+    .update__full-width{
+        width: 100%;
+    }
+
+    .update__button{
+        float:right;
+    }
+
+    .update__button--first{
+        float: left;
+    }
+
+    .not-free-time{
+        color: red;
+        font-size: 12px;
+    }
+}

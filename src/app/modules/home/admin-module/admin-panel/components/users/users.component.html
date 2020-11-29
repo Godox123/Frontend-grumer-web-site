@@ -42,7 +42,7 @@
   *ngIf="windowWidth$ | async; else desktop"
   class="users__container--mobile"
 >
-  <form
+  <!-- <form
     class="search__form"
     novalidate
     [formGroup]="searchForm"
@@ -56,8 +56,8 @@
         type="tel"
         placeholder="Введите номер телефона пользователя"
       />
-      <mat-error *ngIf="searchForm.get('searchValue').hasError('required')">
-        Поле не может быть пустым
+      <mat-error *ngIf="searchForm.get('searchValue').hasError('required')"> -->
+  <!-- Поле не может быть пустым
       </mat-error>
       <mat-error *ngIf="searchForm.get('searchValue').hasError('pattern')">
         Введите номер в формате: (375 (29) 1234567)
@@ -73,12 +73,12 @@
     >
       <mat-icon>person_search</mat-icon>
     </button>
-  </form>
-  <app-users-items
+  </form> -->
+  <!-- <app-users-items
     [users]="(foundUsers$ | async) || (users$ | async)"
-  ></app-users-items>
-  <!-- <mat-icon (click)="openSearchWindow()">person_search</mat-icon>
-  <app-users-items [users]="users$"></app-users-items> -->
+  ></app-users-items> -->
+  <mat-icon (click)="openSearchWindow()">person_search</mat-icon>
+  <app-users-items [users]="users$ | async"></app-users-items>
 
   <div class="users__search" *ngIf="searchWindow">
     <div class="users__found-users">
@@ -119,7 +119,7 @@
       <div>
         <app-users-items
           *ngIf="foundUsers$ | async; else unset"
-          [users]="foundUsers$"
+          [users]="foundUsers$ | async"
         ></app-users-items>
         <ng-template #unset>
           <p class="users__not-found">Пользователей пока не найдено</p>

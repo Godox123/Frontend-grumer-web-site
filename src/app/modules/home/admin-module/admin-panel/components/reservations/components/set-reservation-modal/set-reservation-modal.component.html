@@ -11,6 +11,10 @@
       <mat-form-field class="content__input content__input-email">
         <input formControlName="email" matInput placeholder="Введите email" />
 
+        <mat-error *ngIf="setReservationForm.get('email').hasError('required')">
+          Поле не может быть пустым
+        </mat-error>
+
         <mat-error *ngIf="setReservationForm.get('email').hasError('email')">
           Не корректный email
         </mat-error>
@@ -34,12 +38,12 @@
           placeholder="Введите номер телефона"
         />
 
-        <mat-error *ngIf="setReservationForm.get('phone').hasError('required')">
-          Поле не может быть пустым
+        <mat-error *ngIf="setReservationForm.get('phone').hasError('pattern')">
+          Введите номер в формате: (375 (29) 1234567)
         </mat-error>
 
-        <mat-error *ngIf="setReservationForm.get('phone').hasError('pattern')">
-          9-максимальное колличество символов
+        <mat-error *ngIf="setReservationForm.get('phone').hasError('required')">
+          Поле не может быть пустым
         </mat-error>
       </mat-form-field>
 
@@ -59,6 +63,12 @@
             >
           </div>
         </mat-select>
+
+        <mat-error
+          *ngIf="setReservationForm.get('selectService').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error>
       </mat-form-field>
       <!-- пока сервис не выбран скрывать поле с датой -->
       <mat-form-field
@@ -77,6 +87,12 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
         <mat-datepicker #picker></mat-datepicker>
+
+        <mat-error
+          *ngIf="setReservationForm.get('selectService').hasError('required')"
+        >
+          Поле не может быть пустым
+        </mat-error>
       </mat-form-field>
 
       <div *ngIf="reservationTime | async">
@@ -95,12 +111,18 @@
               >15:00</mat-option
             >
           </mat-select>
+
+          <mat-error
+            *ngIf="setReservationForm.get('selectTime').hasError('required')"
+          >
+            Поле не может быть пустым
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
 
     <ng-template #hideReservationTime>
-      <p>Свободного времени нет</p>
+      <p class="not-free-time">Свободного времени нет</p>
     </ng-template>
 
     <button
@@ -109,6 +131,7 @@
       mat-button
       mat-dialog-close
       type="submit"
+      [disabled]="setReservationForm.invalid"
     >
       Добавить бронирование
     </button>

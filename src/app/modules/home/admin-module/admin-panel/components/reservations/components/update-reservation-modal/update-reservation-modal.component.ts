@@ -1,4 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { ReservationsState } from 'src/app/core/state/reducers/reservations.reducer';
@@ -11,7 +16,8 @@ import { ReservationsActions } from 'src/app/core/state/actions/reservation.acti
 @Component({
   selector: 'app-update-reservation-modal',
   templateUrl: './update-reservation-modal.component.html',
-  styleUrls: ['./update-reservation-modal.component.scss']
+  styleUrls: ['./update-reservation-modal.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UpdateReservationModalComponent implements OnInit {
   public updateReservationForm: FormGroup;

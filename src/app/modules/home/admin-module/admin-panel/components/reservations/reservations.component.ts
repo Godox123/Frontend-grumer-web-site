@@ -93,7 +93,6 @@ export class ReservationsComponent implements OnInit, DoCheck {
             new Date(reservation.selectDate).getTime() < new Date().getTime()
           ) {
             if (reservation.selectTime < new Date().getHours()) {
-              console.log(reservation);
               this.store$.dispatch(
                 ReservationsActions.deleteReservationAction({
                   id: reservation[`_id`]

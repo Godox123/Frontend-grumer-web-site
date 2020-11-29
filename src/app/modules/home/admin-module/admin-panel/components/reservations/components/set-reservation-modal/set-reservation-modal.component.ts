@@ -148,7 +148,7 @@ export class SetReservationModalComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setReservationForm = this.fb.group({
-      email: [null, [Validators.email]],
+      email: [null, [Validators.email, Validators.required]],
       username: [null, [Validators.required]],
       phone: [null, [Validators.required, Validators.pattern('[0-9]{9}')]],
       price: null,

@@ -79,13 +79,17 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
-
-  <ng-template #notfound>
-    <div class="reservation__not-found">Бронирований пока нет</div>
-  </ng-template>
 </ng-template>
 
 <div *ngIf="windowWidth$ | async; else desktop" class="reservations__mobile">
+  <button
+    class="reservation__add"
+    mat-raised-button
+    color="primary"
+    (click)="openAddReservationDialog()"
+  >
+    Добавить бронирование
+  </button>
   <div
     class="reservation"
     *ngFor="let reservation of reservations$ | async; trackBy: identify"

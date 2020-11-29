@@ -7,21 +7,27 @@
 
     .icon-close{
         position: absolute;
-        right:0;
-        top:0;
+        right:-5px;
+        top:-10px;
         cursor: pointer;
     }
     
-    width:400px;
+    width:60vw;
     padding: 10px;
 
     .content{
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        .not-free-time{
+            color: red;
+            font-size: 12px;
+        }
         
         .content__input{
-            width:350px;
+            width:60vw;
+            margin:0 0 15px 0;
         }
     }
 }
@@ -30,7 +36,8 @@
 
     .set-reservation-form__button{
         display: block;
-        margin: auto;
+        align-self: flex-start;    
+        padding: 0;
     }
 }
 

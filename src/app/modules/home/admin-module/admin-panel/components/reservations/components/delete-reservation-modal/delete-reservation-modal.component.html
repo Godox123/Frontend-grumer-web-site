@@ -1,1 +1,15 @@
-<button mat-button mat-dialog-close (click)="removeUser()">remove</button>
+<p class="remove__message">Вы уверены что хотите удалить бронирование?</p>
+
+<button
+  class="remove__button--left"
+  color="warn"
+  mat-button
+  mat-dialog-close
+  (click)="removeUser()"
+>
+  Удалить
+</button>
+
+<button class="remove__button" mat-button mat-dialog-close mat-dialog-close>
+  Закрыть
+</button>

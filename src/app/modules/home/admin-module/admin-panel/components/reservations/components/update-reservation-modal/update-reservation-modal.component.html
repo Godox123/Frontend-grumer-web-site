@@ -1,9 +1,11 @@
-<p>update-reservation-modal works!</p>
-
 <div class="example-container">
-  <form [formGroup]="updateReservationForm" novalidate>
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Choose a date</mat-label>
+  <form
+    [formGroup]="updateReservationForm"
+    novalidate
+    class="update__reservation-form"
+  >
+    <mat-form-field class="update__full-width" appearance="fill">
+      <mat-label>Выберите дату</mat-label>
 
       <input
         (ngModelChange)="checkReservationDate()"
@@ -12,27 +14,53 @@
         [matDatepickerFilter]="myFilter"
         [matDatepicker]="picker"
       />
+
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-datepicker touchUi #picker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field *ngIf="reservationTime | async" appearance="fill">
-      <mat-label>Select</mat-label>
+    <div *ngIf="reservationTime | async">
+      <mat-form-field
+        *ngIf="visibleReservationTime; else hideReservationTime"
+        appearance="fill"
+      >
+        <mat-label>Выберите время</mat-label>
 
-      <mat-select formControlName="selectTime">
-        <mat-option *ngIf="visibleNine" value="{{ nine }}">09:00</mat-option>
-        <mat-option *ngIf="visibleTwelve" value="{{ twelve }}">
-          12:00</mat-option
-        >
-        <mat-option *ngIf="visibleFifteen" value="{{ fifteen }}"
-          >15:00</mat-option
-        >
-      </mat-select>
-    </mat-form-field>
+        <mat-select formControlName="selectTime">
+          <mat-option *ngIf="visibleNine" value="{{ nine }}">09:00</mat-option>
+          <mat-option *ngIf="visibleTwelve" value="{{ twelve }}">
+            12:00</mat-option
+          >
+          <mat-option *ngIf="visibleFifteen" value="{{ fifteen }}"
+            >15:00</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
 
-    <button mat-dialog-close (click)="updateReservation()">update</button>
+      <ng-template #hideReservationTime>
+        <p class="not-free-time">Свободного времени нет</p>
+      </ng-template>
+    </div>
 
-    <button (click)="onNoClick()">close</button>
+    <button
+      color="primary"
+      mat-raised-button
+      mat-dialog-close
+      (click)="updateReservation()"
+      [disabled]="updateReservationForm.invalid"
+      class="update__button update__button--first"
+    >
+      Изменить
+    </button>
+
+    <button
+      color="warn"
+      class="update__button"
+      mat-raised-button
+      (click)="onNoClick()"
+    >
+      Закрыть
+    </button>
   </form>
 </div>
