@@ -1,4 +1,29 @@
 img {
-  height: 25vh;
-  width: 30vw;
+  height: 150px;
+  width: 150px;
+}
+
+.portfolio__element-container{
+  box-sizing: border-box;
+  padding: 20px 10px;
+
+  .portfolio__element{
+    margin: 0 0 20px 0;
+
+    .portfolio__imageBefore{
+      border-right: 2px solid lightcoral;
+    }
+
+    .portfolio__imageBefore:before{
+      content: 'До';
+    }
+
+    .portfolio__imageAfter{
+      border-left: 2px solid lightcoral;
+    }
+
+    .portfolio__imageAfter:after{
+      content: 'После';
+    }
+  }
 }
